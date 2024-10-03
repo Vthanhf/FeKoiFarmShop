@@ -52,7 +52,7 @@ const ListKoi = [
 const HomePage = () => {
   return (
     <>
-      <Slider />
+      <Slider className="slider"/>
       <ImageRow />
       <section className="relative bg-[#26445B] text-white min-h-screen flex items-center justify-center">
         {/* Background Image */}

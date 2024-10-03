@@ -29,15 +29,6 @@ const products = [
 const ProductPage = () => {
   return (
     <Layout>
-      <Header style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <div className="logo" />
-        <Input.Search placeholder="Tìm kiếm sản phẩm" style={{ width: 300 }} />
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <Button icon={<UserOutlined />} style={{ marginRight: 16 }}>Tài khoản</Button>
-          <Button icon={<PhoneOutlined />} style={{ marginRight: 16 }}>Hỗ trợ khách hàng</Button>
-          <Button icon={<ShoppingCartOutlined />}>Giỏ hàng</Button>
-        </div>
-      </Header>
       <Layout className='main-page'>
         <Sider width={200} className="site-layout-background">
           <Menu mode="inline" defaultSelectedKeys={['1']}>
@@ -93,7 +84,7 @@ const ProductPage = () => {
             </div>
             <Row gutter={16}>
               {products.map(product => (
-                <Col span={8} key={product.id}>
+                <Col span={6} key={product.id}>
                   <Card className='img'
                     hoverable
                     cover={<img alt={product.name} src={product.image} />}

@@ -4,19 +4,19 @@ import background from "../../assets/background-white.svg";
 
 const slides = [
   {
-    title: "THIS IS SLIDE 1",
-    description: "THIS IS DESCRIPTION bla bla bla",
+    title: "",
+    description: "",
     background: "bg-black",
-    imageUrl: background,
+    imageUrl: "https://play-lh.googleusercontent.com/_jj8EVlrpn-cp4DYZCWKmCty6DtLfkTPCTEPGt7HjNp2FjeaCRSGEbym9VFCbeksTDbp",
   },
   {
-    title: "THIS IS SLIDE 2",
+    title: "",
     description: "",
     background: "bg-cover bg-center",
     imageUrl: background,
   },
   {
-    title: "THIS IS SLIDE 3",
+    title: "",
     description: "",
     background: "bg-cover bg-center",
     imageUrl:

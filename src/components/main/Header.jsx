@@ -19,7 +19,7 @@ const RouteMain = [
     icon: support,
   },
   {
-    path: "/shop",
+    path: "/product",
     name: "Hệ thống cửa hàng",
     icon: shop,
   },
