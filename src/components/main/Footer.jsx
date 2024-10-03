@@ -24,7 +24,7 @@ import image29 from "../../assets/image-29.svg";
 // import line11 from "../../assets/line-11.svg";
 
 
-// eslint-disable-next-line react/prop-types
+ 
 const FooterSection = ({ title, items }) => (
   <div className="flex-1 mb-4">
     <h3 className="font-bold text-lg mb-4">{title}</h3>
