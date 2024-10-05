@@ -10,7 +10,7 @@ import React from "react"
 const RouteMain = [
   {
     path: "/login",
-    name: "Đăng nhập/Đăng ký",
+    name: "Tên tài khoản",
     icon: hoso,
   },
   {

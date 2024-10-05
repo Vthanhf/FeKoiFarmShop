@@ -9,6 +9,7 @@ import ProductDetail from "./pages/1Koi/ProductDetail";
 
 import Header from "./components/main/Header";
 import Footer from "./components/main/Footer";
+import ProductPage from "./pages/product/ProductPage";
 
 // import StudentManagement from "./StudentManagement";
 
@@ -31,11 +32,19 @@ function App() {
       children:[
        {
         path:"/",
-        element: <HomePage/>
-        
-       }
+        element: <HomePage/> 
+       },
+       {
+        path:"/product",
+        element: <ProductPage/> 
+       },
+       {
+        path:"/detail",
+        element: <ProductDetail/> 
+       },
       ]
     },
+
 
 
     {
@@ -53,7 +62,7 @@ function App() {
       element: <HomePage />,
     },
 
-  
+    
 
 
 
@@ -61,11 +70,7 @@ function App() {
       path: "dashboard",
       element: <Dashboard />,
     },
-    {
-      path: "detail",
-      element: <ProductDetail />,
-    },
-
+    
   ]);
 
   return <RouterProvider router={router} />;
