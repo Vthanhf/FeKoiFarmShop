@@ -10,6 +10,9 @@ import koi5 from "../../assets/koi-dom.svg";
 import Slider from "../../components/home/Slider";
 import ImageRow from "../../components/home/ImageRow";
 import KoiSection from "../../components/home/KoiSection";
+import { Row } from 'antd';
+import CardProduct from '../../components/Card/CardProduct';
+import products from "../../pages/product/ProductPage";
 
 const ListKoi = [
   {
@@ -88,6 +91,11 @@ const HomePage = () => {
           <img src={koi1} alt="Koi Fish 1" className="w-60 md:w-80 mb-10" />
           <img src={koi2} alt="Koi Fish 2" className="w-60 md:w-80" />
         </div>
+        <Row gutter={16} className='product'>
+            {products.map((product) => (
+                <CardProduct key={product.id} product={product}/>
+              ))}
+            </Row>
       </section>
       <section className="relative bg-[#26445B] text-white min-h-screen flex items-center justify-center">
         <div
