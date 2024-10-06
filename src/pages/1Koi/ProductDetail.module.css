@@ -1,7 +1,6 @@
 body {
     margin: 0;
     padding: 0;
-    background-image: url('https://ibb.co/87FwLFS');
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -12,6 +11,8 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    background-image: url('https://ibb.co/87FwLFS');
+    background-repeat: repeat;
     /* Xóa background-color ở đây */
 }
 
