@@ -57,7 +57,7 @@ const SubRouter = [
   },
 ];
 
-const Header = () => {
+const Header2 = () => {
   return (
     <header className="shadow-md w-full">
       <div className="bg-[#26445B] text-white mx-auto px-4 py-4 flex items-center justify-around">
@@ -116,4 +116,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Header2;

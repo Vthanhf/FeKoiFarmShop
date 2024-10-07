@@ -1,0 +1,68 @@
+.header {
+    background-color: #26445B;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .payment-card {
+    background-color: #f0f2f5;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .input-container {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .amount-input {
+    width: 200px;
+    margin-right: 10px;
+  }
+  
+  .generate-button {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .qr-container {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    height: 100vh;
+    text-align: center;
+}
+  
+  .qr-value {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .completepayment{
+    text-align: center;
+    background-color: #f0f2f5;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  .orderstatus-button {
+    background-color: #4CAF50; 
+    border: none; 
+    color: white; 
+    padding: 10px 20px; 
+    text-align: center; 
+    text-decoration: none; 
+    display: inline-block; 
+    font-size: 16px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    transition: background-color 0.3s;
+}
+
+.orderstatus-button:hover {
+    background-color: #45a049;
+}
