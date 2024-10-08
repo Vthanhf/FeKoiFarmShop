@@ -36,8 +36,8 @@ const SubRouter = [
     name: "DANH MỤC",
   },
   {
-    path: "/",
-    name: "HOME",
+    path: "deals",
+    name: "KOI DEALS",
   },
   {
     path: "deals-hot",

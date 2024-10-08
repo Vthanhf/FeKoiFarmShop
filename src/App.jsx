@@ -3,15 +3,13 @@ import LoginPage from "./pages/login";
 import RegisterPage from "./pages/register";
 import Dashboard from "./pages/dashboard";
 import HomePage from "./pages/home/HomePage";
-import Header2 from "./components/main/Header2";
-import Rating from "./pages/Rating/Rating";
+
 import ProductDetail from "./pages/1Koi/ProductDetail";
-import PaymentPageOnline from "./pages/payment/PaymentOnl";
-import OrderStatus from "./pages/OrderStatus/OrderStatus";
+
 import Header from "./components/main/Header";
 import Footer from "./components/main/Footer";
 import ProductPage from "./pages/product/ProductPage";
-import Packs from "./pages/packs/packs";
+import Payment from "./pages/payment/payment";
 
 // import StudentManagement from "./StudentManagement";
 
@@ -44,45 +42,9 @@ function App() {
           path: "/detail",
           element: <ProductDetail />,
         },
-      ],
-    },
-    {
-      path: "",
-      element: (
-        <>
-          <Header2 />
-          <Outlet />
-          <Footer />
-        </>
-      ),
-      children: [
         {
-          path: "/v",
-          element: <HomePage />,
-        },
-        {
-          path: "/productv",
-          element: <ProductPage />,
-        },
-        {
-          path: "/detailv",
-          element: <ProductDetail />,
-        },
-        {
-          path: "paymentonline",
-          element: <PaymentPageOnline />,
-        },
-        {
-          path: "orderstatus",
-          element: <OrderStatus />,
-        },
-        {
-          path: "rating",
-          element: <Rating />,
-        },
-        {
-          path: "package",
-          element: <Packs />,
+          path: "/payment",
+          element: <Payment />,
         },
       ],
     },
@@ -105,6 +67,23 @@ function App() {
     {
       path: "dashboard",
       element: <Dashboard />,
+    },
+
+    {
+      path: "payment",
+      element: <Payment />,
+    },
+
+    {
+      path: "",
+      element: (
+        <>
+          <Header />
+          <ProductPage />
+          <h1>heloooo</h1>
+          <Footer />
+        </>
+      ),
     },
   ]);
 

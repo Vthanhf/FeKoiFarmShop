@@ -13,7 +13,6 @@ import React from 'react';
 import { Layout, Menu, Card, Row, Col, Input, Button, Typography } from 'antd';
 import { UserOutlined, PhoneOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 import './productPage.css';
-import CardProduct from '../../components/Card/CardProduct';
 
 const { Header, Content, Footer, Sider } = Layout;
 const { Title } = Typography;
@@ -25,8 +24,6 @@ const products = [
   { id: 4, name: 'Goshiki – koi #w0729n005-w0203n009', price: '2,000,000đ', breeder: "Sài gòn Koi", sex: "Male", born: "2023", size: "13.00 inch/ 34.5 cm", species: "Goshiki", image: 'https://i.imgur.com/A1hsD3s.png' },
   { id: 5, name: 'Goshiki – koi #w0729n005-w0203n009', price: '2,000,000đ', breeder: "Sài gòn Koi", sex: "Male", born: "2023", size: "13.00 inch/ 34.5 cm", species: "Goshiki", image: 'https://i.imgur.com/A1hsD3s.png' },
   { id: 6, name: 'Goshiki – koi #w0729n005-w0203n009', price: '2,000,000đ', breeder: "Sài gòn Koi", sex: "Male", born: "2023", size: "13.00 inch/ 34.5 cm", species: "Goshiki", image: 'https://i.imgur.com/A1hsD3s.png' },
-  { id: 7, name: 'Goshiki – koi #w0729n005-w0203n009', price: '2,000,000đ', breeder: "Sài gòn Koi", sex: "Male", born: "2023", size: "13.00 inch/ 34.5 cm", species: "Goshiki", image: 'https://i.imgur.com/A1hsD3s.png' },
-  { id: 8, name: 'Goshiki – koi #w0729n005-w0203n009', price: '2,000,000đ', breeder: "Sài gòn Koi", sex: "Male", born: "2023", size: "13.00 inch/ 34.5 cm", species: "Goshiki", image: 'https://i.imgur.com/A1hsD3s.png' },
 ];
 
 const ProductPage = () => {
@@ -85,13 +82,46 @@ const ProductPage = () => {
                 <Button type="link" style={{ color: 'red' }}>Cá đắt giá</Button>
               </div>
             </div>
-            <Row gutter={16} className='product'>
-            {products.map((product) => (
-                <CardProduct key={product.id} product={product}/>
+            <Row gutter={16}>
+              {products.map(product => (
+                <Col span={6} key={product.id}>
+                  <Card className='img'
+                    hoverable
+                    cover={<img alt={product.name} src={product.image} />}
+                  >
+                    <Card.Meta title={product.name} description={product.price} />
+                    <Card.Meta description={"Trang trại: " + product.breeder} />
+                    <Card.Meta description={"Giới tính: " + product.sex} />
+                    <Card.Meta description={"Năm sinh: " + product.born} />
+                    <Card.Meta description={"Size: " + product.size} />
+                    <Card.Meta description={"Giống: " + product.species} />
+                    <Button type="primary" style={{ marginTop: 16 }}>Mua ngay</Button>
+                  </Card>
+                </Col>
               ))}
             </Row>
           </Content>
-          
+          <Footer style={{ backgroundColor: '#000', color: '#fff', padding: '20px 50px' }}>
+            <Row gutter={16}>
+              <Col span={8}>
+                <h3>GIỚI THIỆU CHUNG</h3>
+                <p>Địa chỉ xem cá: Số 99 ngách 99, ngõ 99 999, Q. 999, HCM (ô tô ra vào thoải mái, đỗ xe trực tiếp tại trại 5000m2)</p>
+                <p>Tel: 0971.466.888 (Zalo)</p>
+                <p>Hotline: 02432.666.777</p>
+                <p>Gmail: noithatonplaza@gmail.com</p>
+              </Col>
+              <Col span={8}>
+                <h3>THÔNG TIN TÀI KHOẢN</h3>
+                <ul>
+                  <li>Danh sách các shop, cá nhân ký gửi cá koi</li>
+                  <li>Đăng ký & Đăng nhập</li>
+                  <li>Mật khẩu</li>
+                  <li>Đăng nhập bán buôn</li>
+                  <li>Đăng ký bán buôn</li>
+                </ul>
+              </Col>
+              </Row>
+          </Footer>
         </Layout>
       </Layout>
     </Layout>
