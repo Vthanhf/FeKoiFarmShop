@@ -80,7 +80,6 @@ function App() {
         <>
           <Header />
           <ProductPage />
-          <h1>heloooo</h1>
           <Footer />
         </>
       ),
