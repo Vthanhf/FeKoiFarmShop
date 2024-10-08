@@ -1,0 +1,27 @@
+.rating-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.rating-title {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.rating-description {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.feedback {
+    margin-top: 20px;
+}
+
+.submit-button {
+    margin-top: 10px;
+}
