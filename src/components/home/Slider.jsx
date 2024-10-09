@@ -53,7 +53,7 @@ const Slider = () => {
       >
         {slides.map((slide, index) => (
           <div
-            className={`flex flex-col items-center justify-center min-w-full h-[500px] ${slide.background}`}
+            className={`flex flex-col items-center justify-center min-w-full h-[700px] ${slide.background}`}
             key={index}
             style={{
               backgroundImage: `url(${slide.imageUrl})`,
