@@ -13,6 +13,7 @@ import Footer from "./components/main/Footer";
 import ProductPage from "./pages/product/ProductPage";
 import Packs from "./pages/packs/packs";
 import Payment from "./pages/payment/PaymentOffline";
+import CartPage from "./pages/cart/CartPage";
 
 // import StudentManagement from "./StudentManagement";
 
@@ -88,6 +89,10 @@ function App() {
         {
           path: "payment",
           element: <Payment />,
+        },
+        {
+          path: "cart",
+          element: <CartPage />,
         },
       ],
     },
