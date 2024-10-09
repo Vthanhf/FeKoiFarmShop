@@ -43,7 +43,7 @@ const Slider = () => {
 
   return (
     <div
-      className="relative w-full mt-20 overflow-hidden"
+      className="relative w-full overflow-hidden"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
