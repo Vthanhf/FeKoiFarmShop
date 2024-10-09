@@ -5,7 +5,7 @@ html, body {
   }
   
   #root {
-    background-image: url('../../assets/image/anhnen.png');
+    background-image: url('../../assets/ImageOfPackage/anhnen.png');
     background-repeat: no-repeat;
     background-position: center top;
     background-attachment: fixed;
@@ -30,7 +30,7 @@ html, body {
   }
   
   .hero-image {
-    background-image: url('../../assets/image/packs1.png');
+    background-image: url('../../assets/ImageOfPackage/packs1.png');
     width: 100%;
     height: 200px;
     background-color: #f0f0f0;
@@ -58,7 +58,7 @@ html, body {
   }
   
   .packA {
-      background-image: url('../../assets/image/packa.png');
+      background-image: url('../../assets/ImageOfPackage/packa.png');
       height: 500px;
       width: 800px;
       background-size: 80%; 
@@ -67,7 +67,7 @@ html, body {
   }
   
   .packB {
-      background-image: url('../../assets/image/packb.png');
+      background-image: url('../../assets/ImageOfPackage/packb.png');
       height: 500px;
       width: 800px;
       background-size: 80%; 
@@ -80,7 +80,7 @@ html, body {
   }
   
   .mixed-pack {
-    background-image: url('../../assets/image/packmixed.png');
+    background-image: url('../../assets/ImageOfPackage/packmixed.png');
     width: 100%;
     height: 300px;
     background-color: #ffffff;
@@ -143,7 +143,7 @@ html, body {
       text-align:center;
       width: auto;
       height: 250px;
-      background-image: url('../../assets/image/packcakoi.png');
+      background-image: url('../../assets/ImageOfPackage/packcakoi.png');
       background-size: 100%; 
       background-repeat: no-repeat;
       background-position: center;  
