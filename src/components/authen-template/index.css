@@ -1,14 +1,16 @@
 .authen-template{
+    background-color: aliceblue;
     width: 100vw;
-    height: 110vh;
+    height: 52vw;
     background-image: url('https://i.imgur.com/p05wuLl.png');
     background-repeat: no-repeat;
     background-size: 50%;
     background-position-x: right;
-    
-    
+    line-height: 30px;
+
 }
 .authen-template-right{
+
     align-items: center;
     width: 845px;
     height: 740px;
