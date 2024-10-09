@@ -12,7 +12,7 @@ import Header from "./components/main/Header";
 import Footer from "./components/main/Footer";
 import ProductPage from "./pages/product/ProductPage";
 import Packs from "./pages/packs/packs";
-import Payment from "./pages/payment/index";
+import Payment from "./pages/payment/PaymentOffline";
 
 // import StudentManagement from "./StudentManagement";
 
