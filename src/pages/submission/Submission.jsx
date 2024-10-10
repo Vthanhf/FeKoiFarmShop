@@ -6,7 +6,7 @@ function Submission() {
   return (
     <div className="submission-page">
       <div className="form-container">
-        <h2>“Tôi” muốn ký gửi</h2>
+        <h2 className="wanna">“Tôi” muốn ký gửi</h2>
         <form>
           <div className="form-group">
             <label htmlFor="fishType">Thông tin cá Koi</label>

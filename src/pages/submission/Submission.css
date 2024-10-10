@@ -8,6 +8,10 @@
     background-size: cover; /* Đảm bảo hình nền phủ kín */
 }
 
+.wanna{
+    font-size: large;
+}
+
 .form-container {
     padding: 50px;
     background-color: white;
