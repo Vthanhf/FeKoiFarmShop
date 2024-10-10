@@ -37,7 +37,7 @@ function Payment() {
                 </div>
               </td>
               <td>đ1.200.000</td>
-              <td>
+              <td className="soluong">
                 <button>-</button>
                 <span>1</span>
                 <button>+</button>
@@ -56,12 +56,12 @@ function Payment() {
 
       <div className="total">
         <p>
-          Tổng số tiền (1 sản phẩm): <span>đ1.400.000</span>
+          Tổng số tiền (1 sản phẩm): <span className="giachot">đ1.400.000</span>
         </p>
       </div>
 
       <div className="payment-method">
-        <h3>Phương thức thanh toán</h3>
+        <h3 className="pttt">Phương thức thanh toán</h3>
         <button className="credit-card-button">Thẻ tín dụng</button>
         <button>Thanh toán khi nhận hàng</button>
       </div>
