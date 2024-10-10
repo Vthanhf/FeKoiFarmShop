@@ -1,8 +1,11 @@
 .payment-container {
-  max-width: 1000px;
+  align-items: center;
+  width: 1423px;
+  height: 800px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 50px;
   font-family: Arial, sans-serif;
+  background-color: white;
 }
 
 .delivery-address {
@@ -128,4 +131,17 @@
   .order-summary td:nth-of-type(2):before { content: "Đơn giá"; }
   .order-summary td:nth-of-type(3):before { content: "Số lượng"; }
   .order-summary td:nth-of-type(4):before { content: "Thành tiền"; }
+}
+
+#root{
+  background-image: none;
+}
+
+.giachot{
+  color: red;
+}
+
+.pttt{
+  font-size: 20px;
+  padding: 5px;
 }
