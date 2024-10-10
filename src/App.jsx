@@ -15,6 +15,7 @@ import Packs from "./pages/packs/packs";
 import Payment from "./pages/payment/PaymentOffline";
 import CartPage from "./pages/cart/CartPage";
 import RegisterPage from "./pages/register/register";
+import Submission from "./pages/submission/Submission";
 
 // import StudentManagement from "./StudentManagement";
 
@@ -46,6 +47,10 @@ function App() {
         {
           path: "/detail",
           element: <ProductDetail />,
+        },
+        {
+          path: "/kygui",
+          element: <Submission />,
         },
       ],
     },
