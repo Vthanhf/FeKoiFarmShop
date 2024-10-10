@@ -1,6 +1,6 @@
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 import LoginPage from "./pages/login";
-import RegisterPage from "./pages/register";
+// import RegisterPage from "./pages/register";
 import Dashboard from "./pages/dashboard";
 import HomePage from "./pages/home/HomePage";
 import Header2 from "./components/main/Header2";
@@ -14,6 +14,7 @@ import ProductPage from "./pages/product/ProductPage";
 import Packs from "./pages/packs/packs";
 import Payment from "./pages/payment/PaymentOffline";
 import CartPage from "./pages/cart/CartPage";
+import RegisterPage from "./pages/register/register";
 
 // import StudentManagement from "./StudentManagement";
 
