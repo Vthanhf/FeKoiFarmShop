@@ -2,6 +2,7 @@
 // path/to/Inventory.jsx
 import React, { useState } from "react";
 import { Table, Button, Modal, Form, Input, message } from "antd";
+import "./Inventory.css";
 
 const Inventory = () => {
   const [dataSource, setDataSource] = useState([]);
@@ -49,29 +50,29 @@ const Inventory = () => {
 
   return (
     <>
-      <Button type="primary" onClick={showModal}>
-        Tạo mới sản phẩm
+      <Button className="custom-button green" onClick={showModal}>
+        <i className="fas fa-plus"></i> Tạo mới sản phẩm
       </Button>
-      <Button type="primary" onClick={showModal}>
-        Tải từ file
+      <Button className="custom-button yellow" onClick={showModal}>
+        <i className="fas fa-file-download"></i> Tải từ file
       </Button>
-      <Button type="primary" onClick={showModal}>
-      In dữ liệu
+      <Button className="custom-button purple" onClick={showModal}>
+        <i className="fas fa-print"></i> In dữ liệu
       </Button>
-      <Button type="primary" onClick={showModal}>
-      Sao chép
+      <Button className="custom-button blue" onClick={showModal}>
+        <i className="fas fa-copy"></i> Sao chép
       </Button>
-      <Button type="primary" onClick={showModal}>
-      Xuất Excel
+      <Button className="custom-button green" onClick={showModal}>
+        <i className="fas fa-file-excel"></i> Xuất Excel
       </Button>
-      <Button type="primary" onClick={showModal}>
-      Xuất PDF
+      <Button className="custom-button pink" onClick={showModal}>
+        <i className="fas fa-file-pdf"></i> Xuất PDF
       </Button>
-      <Button type="primary" onClick={showModal}>
-      Xóa tất cả
+      <Button className="custom-button gray" onClick={showModal}>
+        <i className="fas fa-trash"></i> Xóa tất cả
       </Button>
-      <Button type="primary" onClick={showModal}>
-      Cá ký gửi
+      <Button className="custom-button pink" onClick={showModal}>
+        <i className="fas fa-signature"></i> Cá ký gửi
       </Button>
       <Table dataSource={dataSource} columns={columns} />
 

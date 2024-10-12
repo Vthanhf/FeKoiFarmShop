@@ -1,0 +1,32 @@
+.custom-button {
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px; /* Thêm khoảng cách giữa các nút */
+}
+
+.green {
+    background-color: #4CAF50; /* Màu xanh lá cây */
+}
+
+.yellow {
+    background-color: #FFC107; /* Màu vàng */
+}
+
+.purple {
+    background-color: #6F42C1; /* Màu tím */
+}
+
+.blue {
+    background-color: #007BFF; /* Màu xanh dương */
+}
+
+.pink {
+    background-color: #E83E8C; /* Màu hồng */
+}
+
+.gray {
+    background-color: #6C757D; /* Màu xám */
+}
