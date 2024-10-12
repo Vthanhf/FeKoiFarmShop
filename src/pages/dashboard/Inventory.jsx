@@ -44,7 +44,6 @@ const Inventory = () => {
   const columns = [
     { title: "Mã sản phẩm", dataIndex: "code", key: "code" },
     { title: "Tên sản phẩm", dataIndex: "name", key: "name" },
-    { title: "Ảnh", dataIndex: "image", key: "image", render: (text) => <img src={text} alt="product" style={{ width: 50, height: 50 }} /> },
     { title: "Số lượng", dataIndex: "quantity", key: "quantity" },
     { title: "Tình trạng", dataIndex: "status", key: "status" },
     { title: "Giá tiền", dataIndex: "price", key: "price" },
