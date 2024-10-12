@@ -100,6 +100,10 @@ function App() {
           path: "cart",
           element: <CartPage />,
         },
+        {
+          path: "sub",
+          element: <Submission />,
+        },
       ],
     },
 
