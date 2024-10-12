@@ -31,7 +31,7 @@ function RegisterPage() {
     };
 
     return (
-        <AuthenTemplate>
+        <AuthenTemplate >
             <h1>Register form</h1>
             <Form labelCol={{
             span: 24,

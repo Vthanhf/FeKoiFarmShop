@@ -13,6 +13,7 @@ import Inventory from './Inventory';
 import { LineChart, Line, XAxis, YAxis, Tooltip } from 'recharts'//npm install recharts
 import Orders from './Orders';
 import Customers from './Customers';
+import "./dashboard.css";
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -51,13 +52,13 @@ const Dashboard = () => {
   };
   const RevenueChart = () => {
     const data = [
-      { name: 'Tháng 1', doanhThu: 9000 },
-      { name: 'Tháng 2', doanhThu: 3000 },
-      { name: 'Tháng 3', doanhThu: 2000 },
-      { name: 'Tháng 4', doanhThu: 2780 },
-      { name: 'Tháng 5', doanhThu: 1890 },
-      { name: 'Tháng 6', doanhThu: 2390 },
-      { name: 'Tháng 7', doanhThu: 3490 },
+      { name: 'Tháng 1', doanhThu: 1395000000 },
+      { name: 'Tháng 2', doanhThu: 1395000000 },
+      { name: 'Tháng 3', doanhThu: 1895000000 },
+      { name: 'Tháng 4', doanhThu: 2395000000 },
+      { name: 'Tháng 5', doanhThu: 395000000 },
+      { name: 'Tháng 6', doanhThu: 1395000000 },
+      { name: 'Tháng 7', doanhThu: 1295000000 },
     ];
   
     return (
@@ -92,7 +93,7 @@ const Dashboard = () => {
               </Card>
             </Col>
           </Row>
-          <RevenueChart />
+          <div className='graph'><RevenueChart /></div>
           <Table
             dataSource={[
               { key: '1', id: 'IK0847', customer: 'Nguyễn Văn A', total: '85.000.000đ', status: 'Đã hoàn thành' },
