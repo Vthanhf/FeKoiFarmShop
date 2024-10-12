@@ -1,13 +1,19 @@
 .submission-page {
+    /* background-image: url(''); */
     display: flex;
-    height: 100vh;
+    height: 150vh;
     justify-content: center; /* Căn giữa theo chiều ngang */
     align-items: center; /* Căn giữa theo chiều dọc */
-    background: url('path/to/your/background-image.jpg') no-repeat center center;
+    background: url('D:\FeKoiFarmShop\src\assets\ImageOfPackage\anhnen.png') no-repeat center center;
     background-size: cover; /* Đảm bảo hình nền phủ kín */
 }
 
+.wanna{
+    font-size: large;
+}
+
 .form-container {
+    padding: 50px;
     background-color: white;
     padding: 40px;
     border-radius: 10px;
