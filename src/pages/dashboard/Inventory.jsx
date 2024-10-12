@@ -3,6 +3,17 @@
 import React, { useState } from "react";
 import { Table, Button, Modal, Form, Input, message } from "antd";
 import "./Inventory.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faPlus,
+  faFileDownload,
+  faPrint,
+  faCopy,
+  faFileExcel,
+  faFilePdf,
+  faTrash,
+  faSignature,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Inventory = () => {
   const [dataSource, setDataSource] = useState([]);
@@ -51,28 +62,28 @@ const Inventory = () => {
   return (
     <>
       <Button className="custom-button green" onClick={showModal}>
-        <i className="fas fa-plus"></i> Tạo mới sản phẩm
+        <FontAwesomeIcon icon={faPlus} /> Tạo mới sản phẩm
       </Button>
       <Button className="custom-button yellow" onClick={showModal}>
-        <i className="fas fa-file-download"></i> Tải từ file
+        <FontAwesomeIcon icon={faFileDownload} /> Tải từ file
       </Button>
       <Button className="custom-button purple" onClick={showModal}>
-        <i className="fas fa-print"></i> In dữ liệu
+        <FontAwesomeIcon icon={faPrint} /> In dữ liệu
       </Button>
       <Button className="custom-button blue" onClick={showModal}>
-        <i className="fas fa-copy"></i> Sao chép
+        <FontAwesomeIcon icon={faCopy} /> Sao chép
       </Button>
       <Button className="custom-button green" onClick={showModal}>
-        <i className="fas fa-file-excel"></i> Xuất Excel
+        <FontAwesomeIcon icon={faFileExcel} /> Xuất Excel
       </Button>
       <Button className="custom-button pink" onClick={showModal}>
-        <i className="fas fa-file-pdf"></i> Xuất PDF
+        <FontAwesomeIcon icon={faFilePdf} /> Xuất PDF
       </Button>
       <Button className="custom-button gray" onClick={showModal}>
-        <i className="fas fa-trash"></i> Xóa tất cả
+        <FontAwesomeIcon icon={faTrash} /> Xóa tất cả
       </Button>
       <Button className="custom-button pink" onClick={showModal}>
-        <i className="fas fa-signature"></i> Cá ký gửi
+        <FontAwesomeIcon icon={faSignature} /> Cá ký gửi
       </Button>
       <Table dataSource={dataSource} columns={columns} />
 
