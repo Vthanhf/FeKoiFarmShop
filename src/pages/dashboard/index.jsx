@@ -10,6 +10,7 @@ import {
 } from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu, theme, Card, Row, Col,Table } from 'antd';
 import Inventory from './Inventory';
+import { LineChart, Line, XAxis, YAxis, Tooltip } from 'recharts'
 import Orders from './Orders';
 import Customers from './Customers';
 
@@ -48,6 +49,26 @@ const Dashboard = () => {
   const handleMenuClick = (e) => {
     setSelectedKey(e.key);
   };
+  const RevenueChart = () => {
+    const data = [
+      { name: 'Tháng 1', doanhThu: 9000 },
+      { name: 'Tháng 2', doanhThu: 3000 },
+      { name: 'Tháng 3', doanhThu: 2000 },
+      { name: 'Tháng 4', doanhThu: 2780 },
+      { name: 'Tháng 5', doanhThu: 1890 },
+      { name: 'Tháng 6', doanhThu: 2390 },
+      { name: 'Tháng 7', doanhThu: 3490 },
+    ];
+  
+    return (
+      <LineChart width={600} height={300} data={data}>
+        <XAxis dataKey="name" />
+        <YAxis />
+        <Tooltip />
+        <Line type="monotone" dataKey="doanhThu" stroke="#8884d8" />
+      </LineChart>
+    );
+  };
 
   const renderContent = () => {
     switch (selectedKey) {
@@ -71,6 +92,19 @@ const Dashboard = () => {
               </Card>
             </Col>
           </Row>
+          <RevenueChart />
+          <Table
+            dataSource={[
+              { key: '1', id: 'IK0847', customer: 'Nguyễn Văn A', total: '85.000.000đ', status: 'Đã hoàn thành' },
+              // ... existing data ...
+            ]}
+            columns={[
+              { title: 'ID Đơn Hàng', dataIndex: 'id', key: 'id' },
+              { title: 'Tên Khách Hàng', dataIndex: 'customer', key: 'customer' },
+              { title: 'Tổng Tiền', dataIndex: 'total', key: 'total' },
+              { title: 'Trạng Thái', dataIndex: 'status', key: 'status' },
+            ]}
+          />
           <Table
               dataSource={[
                 { key: '1', id: 'IK0847', customer: 'Nguyễn Văn A', total: '85.000.000đ', status: 'Đã hoàn thành' },
@@ -104,6 +138,26 @@ const Dashboard = () => {
         return <Customers />;
       case '6':
         return <Customers />;
+        case '7': // Thêm case cho trang quản lý doanh thu
+      return (
+        <>
+          <h2>Quản Lý Doanh Thu</h2>
+          <RevenueChart />
+          <Table
+            dataSource={[
+              { key: '1', id: 'IK0847', customer: 'Nguyễn Văn A', total: '85.000.000đ', status: 'Đã hoàn thành' },
+              // ... existing data ...
+            ]}
+            columns={[
+              { title: 'ID Đơn Hàng', dataIndex: 'id', key: 'id' },
+              { title: 'Tên Khách Hàng', dataIndex: 'customer', key: 'customer' },
+              { title: 'Tổng Tiền', dataIndex: 'total', key: 'total' },
+              { title: 'Trạng Thái', dataIndex: 'status', key: 'status' },
+            ]}
+          />
+        </>
+      );
+
       default:
         return <h2>Welcome to the Koi Fish Management Dashboard</h2>;
     }
