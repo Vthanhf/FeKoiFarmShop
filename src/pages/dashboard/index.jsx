@@ -8,9 +8,9 @@ import {
   TeamOutlined,
   UserOutlined,
 } from '@ant-design/icons';
-import { Breadcrumb, Layout, Menu, theme, Card, Row, Col,Table } from 'antd';
+import { Breadcrumb, Layout, Menu, theme, Card, Row, Col,Table } from 'antd'; //npm instal antd
 import Inventory from './Inventory';
-import { LineChart, Line, XAxis, YAxis, Tooltip } from 'recharts'
+import { LineChart, Line, XAxis, YAxis, Tooltip } from 'recharts'//npm install recharts
 import Orders from './Orders';
 import Customers from './Customers';
 
