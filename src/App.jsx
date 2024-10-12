@@ -16,6 +16,7 @@ import Payment from "./pages/payment/PaymentOffline";
 import CartPage from "./pages/cart/CartPage";
 import RegisterPage from "./pages/register/register";
 import Submission from "./pages/submission/Submission";
+import FAQ from "./pages/FAQs/faqs";
 
 // import StudentManagement from "./StudentManagement";
 
@@ -103,6 +104,10 @@ function App() {
         {
           path: "sub",
           element: <Submission />,
+        },
+        {
+          path: "faqs",
+          element: <FAQ />,
         },
       ],
     },
