@@ -1,11 +1,13 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
 import styles from "./ProductDetail.module.css";
+import { useNavigate } from 'react-router-dom';
 
 function ProductDetail() {
   const [mainImage, setMainImage] = useState(
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSP8VwVwZy-h66SZvqvZW2bUC0-uK93Yb2zcIuk0PR6Z2X2b--"
   );
+  const navigate = useNavigate();
   const thumbnails = [
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSP8VwVwZy-h66SZvqvZW2bUC0-uK93Yb2zcIuk0PR6Z2X2b--",
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSP8VwVwZy-h66SZvqvZW2bUC0-uK93Yb2zcIuk0PR6Z2X2b--",
@@ -24,6 +26,14 @@ function ProductDetail() {
     setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? thumbnails.length - 1 : prevIndex - 1
     );
+  };
+
+  const handleAddToCart = () => {
+    navigate(`/cart`);
+  };
+
+  const handleBuyNow = () => {
+    navigate(`/payment`);
   };
 
   return (
@@ -100,11 +110,15 @@ function ProductDetail() {
               </table>
               <button className={styles.birthButton}>Giấy khai sinh</button>
 
-              <button className={styles.addToCashButton}>
+              <button className={styles.addToCashButton}
+                      onClick={handleAddToCart}
+                >
                 Thêm vào giỏ hàng
               </button>
 
-              <button className={styles.buyButton}>Mua ngay</button>
+              <button className={styles.buyButton}
+                      onClick={handleBuyNow}
+              >Mua ngay</button>
             </div>
             
           </div>

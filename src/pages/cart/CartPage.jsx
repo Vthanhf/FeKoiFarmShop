@@ -2,11 +2,12 @@
 import React, { useState, useEffect } from 'react';
 import { Layout, Table, InputNumber, Button, Typography, Row, Col, Card, Form, Input, Select } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
-
+import { useNavigate } from 'react-router-dom';
 const { Content } = Layout;
 const { Title, Text } = Typography;
 const { TextArea } = Input;
 const { Option } = Select;
+
 
 const CartPage = () => {
   const [cartItems, setCartItems] = useState([
@@ -15,7 +16,7 @@ const CartPage = () => {
   ]);
   const [totalAmount, setTotalAmount] = useState(0);
   const [form] = Form.useForm();
-
+  const navigate = useNavigate();
   useEffect(() => {
     calculateTotal();
   },);
@@ -40,6 +41,10 @@ const CartPage = () => {
   const onFinish = (values) => {
     console.log('Thông tin đặt hàng:', { ...values, cartItems, totalAmount });
     // Xử lý đặt hàng ở đây
+  };
+
+  const handleCheckout = () => {
+    navigate(`/payment`);
   };
 
   const columns = [
@@ -125,7 +130,7 @@ const CartPage = () => {
                   </Select>
                 </Form.Item>
                 <Form.Item>
-                  <Button type="primary" htmlType="submit">
+                  <Button type="primary" htmlType="submit" onClick={handleCheckout}>
                     Đặt hàng
                   </Button>
                 </Form.Item>
