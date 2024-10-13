@@ -192,7 +192,7 @@ const Dashboard = () => {
           </div>
         </Content>
         <Footer style={{ textAlign: 'center' }}>
-          {/* Footer content */}
+          {}
         </Footer>
       </Layout>
     </Layout>

@@ -67,10 +67,6 @@ function RegisterPage() {
       >
         <Input.Password />
       </Form.Item>
-            <FormItem label= "Full name" name="fullname" rules={[{ required: true, message: 'Please input your full name!' }]}
-            >
-                <Input/>
-            </FormItem>
             <FormItem label= "Phone" name="phone"rules={[
           { required: true, message: 'Please input your phone number!' },
           { pattern: /^[0-9]{10}$/, message: 'Phone number must be 10 digits!' },
