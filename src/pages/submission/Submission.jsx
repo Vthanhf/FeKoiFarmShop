@@ -1,8 +1,15 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
 import "./Submission.css";
+import { useNavigate } from 'react-router-dom';
 
 function Submission() {
+  const navigate = useNavigate();
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Add your submission logic here
+    navigate(`/success`);
+};
   return (
     <div className="submission-page">
       <div className="form-container">
@@ -61,7 +68,7 @@ function Submission() {
             <br /> - Chỉ nhận ký gửi ở khu vực TP.HCM.
             <br /> - Phí và tiền sẽ được hiện hiện sau khi cá đã được mua.
           </p>
-          <button type="submit" className="submit-button">
+          <button type="submit" className="submit-button" onClick={handleSubmit}>
             Xác nhận gửi
           </button>
         </form>

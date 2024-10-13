@@ -18,6 +18,8 @@ import RegisterPage from "./pages/register/register";
 import Submission from "./pages/submission/Submission";
 import FAQ from "./pages/FAQs/faqs";
 import Voucher from "./pages/Voucher/Voucher";
+import SubmissionSuccess from './pages/submission/SubmissionSuccess'; // Adjust the path as necessary
+
 
 // import StudentManagement from "./StudentManagement";
 
@@ -109,6 +111,10 @@ function App() {
         {
           path: "voucher",
           element: <Voucher />,
+        },
+        {
+          path: "success",
+          element: <SubmissionSuccess />,
         },
       ],
     },
