@@ -17,6 +17,7 @@ import CartPage from "./pages/cart/CartPage";
 import RegisterPage from "./pages/register/register";
 import Submission from "./pages/submission/Submission";
 import FAQ from "./pages/FAQs/faqs";
+import Voucher from "./pages/Voucher/Voucher";
 
 // import StudentManagement from "./StudentManagement";
 
@@ -104,6 +105,10 @@ function App() {
         {
           path: "faqs",
           element: <FAQ />,
+        },
+        {
+          path: "voucher",
+          element: <Voucher />,
         },
       ],
     },
