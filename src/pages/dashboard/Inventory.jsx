@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Table, Button, Modal, Form, Input, message } from "antd";
 import "./Inventory.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+//npm install @fortawesome/react-fontawesome @fortawesome/free-solid-svg-icons
 import {
   faPlus,
   faFileDownload,

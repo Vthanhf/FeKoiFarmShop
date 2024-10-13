@@ -49,10 +49,6 @@ function App() {
           path: "/detail",
           element: <ProductDetail />,
         },
-        {
-          path: "/kygui",
-          element: <Submission />,
-        },
       ],
     },
     {
