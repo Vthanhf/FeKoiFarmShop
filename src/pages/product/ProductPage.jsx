@@ -28,6 +28,20 @@ const products = [
   { id: 7, name: 'Goshiki – koi #w0729n005-w0203n009', price: '2,000,000đ', breeder: "Sài gòn Koi", sex: "Male", born: "2023", size: "13.00 inch/ 34.5 cm", species: "Goshiki", image: 'https://i.imgur.com/A1hsD3s.png' },
   { id: 8, name: 'Goshiki – koi #w0729n005-w0203n009', price: '2,000,000đ', breeder: "Sài gòn Koi", sex: "Male", born: "2023", size: "13.00 inch/ 34.5 cm", species: "Goshiki", image: 'https://i.imgur.com/A1hsD3s.png' },
 ];
+// const [products, setProducts] = useState([]); // Khởi tạo state cho sản phẩm
+
+//   useEffect(() => {
+//     const fetchProducts = async () => { // Hàm gọi API
+//       try {
+//         const response = await api.get('/products'); // Gọi API để lấy sản phẩm
+//         setProducts(response.data); // Cập nhật state với dữ liệu nhận được
+//       } catch (error) {
+//         console.error("Error fetching products:", error); // Xử lý lỗi
+//       }
+//     };
+
+//     fetchProducts(); // Gọi hàm fetchProducts
+//   }, []);
 
 const ProductPage = () => {
   return (
