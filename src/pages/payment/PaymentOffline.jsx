@@ -1,8 +1,14 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
 import "./PaymentOffline.css";
-
+import { useNavigate } from 'react-router-dom';
 function Payment() {
+  const navigate = useNavigate();
+
+  const handleCheckout = () => {
+    navigate(`/paymentonline`);
+  };
+
   return (
     <div className="payment-container">
       <div className="delivery-address">
@@ -70,7 +76,9 @@ function Payment() {
         <p>
           Tổng tiền hàng: <span>đ1.400.000</span>
         </p>
-        <button className="checkout-button">Thanh toán</button>
+        <button className="checkout-button"
+        onClick={handleCheckout}
+        >Thanh toán</button>
       </div>
     </div>
   );

@@ -80,7 +80,7 @@ function LoginPage() {
            <Button className='buttonGoogle' onClick={handleLoginGoogle}>Login google</Button>
            
 
-            <Link to="/">Home</Link>
+            <Link to="/v">Home</Link>
         </Form>
     </AuthenTemplate>
   )

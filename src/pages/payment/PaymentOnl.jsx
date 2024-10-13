@@ -1,30 +1,25 @@
 import { useState } from 'react';
-import { QRCode, Layout, Button, Radio, Input, Typography, message, Card, Steps } from 'antd';
+import { QRCode, Layout, Button, Radio, Typography, Card, Steps } from 'antd';
 // import { useHistory } from 'react-router-dom';
 import './PaymentPage.css'; // Import file CSS
 import { Link } from 'react-router-dom';
 
-const { Header, Content } = Layout;
+const {  Content } = Layout;
 const { Title } = Typography;
 const { Step } = Steps;
 
 const PaymentPageOnline = () => {
 //   const history = useHistory();
   const [paymentMethod, setPaymentMethod] = useState('MoMo');
-  const [amount, setAmount] = useState(0);
+ 
   const [qrValue, setQrValue] = useState('');
   const [currentStep, setCurrentStep] = useState(0);
 
   const handlePayment = () => {
-    if (amount <= 0) {
-      message.error('Vui lòng nhập số tiền hợp lệ!');
-      return;
-    }
-
     // Tạo giá trị QR cho thanh toán dựa trên phương thức
     const qrData = paymentMethod === 'MoMo'
-      ? `MoMo Payment: Amount: ${amount}`
-      : `VNPay Payment: Amount: ${amount}`;
+      ? `MoMo Payment:`
+      : `VNPay Payment:`;
     
     setQrValue(qrData);
     setCurrentStep(1); // Chuyển sang bước 2 sau khi tạo mã QR
@@ -39,9 +34,6 @@ const PaymentPageOnline = () => {
 
   return (
     <Layout>
-      <Header className="header">
-        <Title style={{ color: 'white' }}>Trang Thanh Toán</Title>
-      </Header>
       <Content style={{ padding: '20px' }}>
         <Card className="payment-card">
           <Steps current={currentStep}>
@@ -51,26 +43,20 @@ const PaymentPageOnline = () => {
           </Steps>
 
           {currentStep === 0 && (
-            <>
+
+              <div style={{ textAlign: 'center' }}>
               <Title level={3}>Chọn Phương Thức Thanh Toán</Title>
               <Radio.Group onChange={(e) => setPaymentMethod(e.target.value)} value={paymentMethod}>
                 <Radio value="MoMo">MoMo</Radio>
                 <Radio value="VNPay">VNPay</Radio>
               </Radio.Group>
 
-              <div className="input-container">
-                <Input
-                  type="number"
-                  placeholder="Nhập số tiền"
-                  value={amount}
-                  onChange={(e) => setAmount(e.target.value)}
-                  className="amount-input"
-                />
+              <div className="input-container" style={{ marginTop: '20px', display: 'flex', justifyContent: 'center' }}>
                 <Button type="primary" onClick={handlePayment} className="generate-button">
-                  Tạo Mã QR
+                  Tiếp theo
                 </Button>
               </div>
-            </>
+            </div>
           )}
 
           {currentStep === 1 && qrValue && (
