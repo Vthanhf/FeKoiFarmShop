@@ -45,7 +45,14 @@ const Inventory = () => {
   const columns = [
     { title: "Mã sản phẩm", dataIndex: "code", key: "code" },
     { title: "Tên sản phẩm", dataIndex: "name", key: "name" },
-    { title: "Ảnh", dataIndex: "image", key: "image", render: (text) => <img src={text} alt="product" style={{ width: 50, height: 50 }} /> },
+    {
+      title: "Ảnh",
+      dataIndex: "image",
+      key: "image",
+      render: (text) => (
+        <img src={text} alt="product" style={{ width: 50, height: 50 }} />
+      ),
+    },
     { title: "Số lượng", dataIndex: "quantity", key: "quantity" },
     { title: "Tình trạng", dataIndex: "status", key: "status" },
     { title: "Giá tiền", dataIndex: "price", key: "price" },
@@ -66,25 +73,25 @@ const Inventory = () => {
       <Button className="custom-button green" onClick={showModal}>
         <FontAwesomeIcon icon={faPlus} /> Tạo mới sản phẩm
       </Button>
-      <Button className="custom-button yellow" onClick={showModal}>
+      <Button className="custom-button yellow">
         <FontAwesomeIcon icon={faFileDownload} /> Tải từ file
       </Button>
-      <Button className="custom-button purple" onClick={showModal}>
+      <Button className="custom-button purple">
         <FontAwesomeIcon icon={faPrint} /> In dữ liệu
       </Button>
-      <Button className="custom-button blue" onClick={showModal}>
+      <Button className="custom-button blue">
         <FontAwesomeIcon icon={faCopy} /> Sao chép
       </Button>
-      <Button className="custom-button green" onClick={showModal}>
+      <Button className="custom-button green">
         <FontAwesomeIcon icon={faFileExcel} /> Xuất Excel
       </Button>
-      <Button className="custom-button pink" onClick={showModal}>
+      <Button className="custom-button pink">
         <FontAwesomeIcon icon={faFilePdf} /> Xuất PDF
       </Button>
-      <Button className="custom-button gray" onClick={showModal}>
+      <Button className="custom-button gray">
         <FontAwesomeIcon icon={faTrash} /> Xóa tất cả
       </Button>
-      <Button className="custom-button pink" onClick={showModal}>
+      <Button className="custom-button pink">
         <FontAwesomeIcon icon={faSignature} /> Cá ký gửi
       </Button>
       <Table dataSource={dataSource} columns={columns} />
