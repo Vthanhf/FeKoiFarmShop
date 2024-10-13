@@ -20,6 +20,10 @@ import FAQ from "./pages/FAQs/faqs";
 import Voucher from "./pages/Voucher/Voucher";
 import SubmissionSuccess from './pages/submission/SubmissionSuccess'; // Adjust the path as necessary
 import OrderManagement from "./pages/Customer/Customer";
+import ConsignmentOrders from "./pages/Customer/ConsignmentOrders";
+import RegularOrders from "./pages/Customer/RegularOrders";
+import AccountInfo from "./pages/Customer/AccountInfo";
+import ChangePassword from "./pages/Customer/ChangePassword";
 
 // import StudentManagement from "./StudentManagement";
 
@@ -119,6 +123,22 @@ function App() {
         {
           path: "customer",
           element: <OrderManagement />,
+        },
+        {
+          path: "consignment",
+          element: <ConsignmentOrders />,
+        },
+        {
+          path: "regular",
+          element: <RegularOrders />,
+        },
+        {
+          path: "account-info",
+          element: <AccountInfo />,
+        },
+        {
+          path: "change-password",
+          element: <ChangePassword />,
         },
       ],
     },
