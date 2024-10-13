@@ -9,7 +9,7 @@ import React from "react"
 
 const RouteMain = [
   {
-    path: "/login",
+    path: "/customer",
     name: "Tên tài khoản",
     icon: hoso,
   },
@@ -36,7 +36,7 @@ const SubRouter = [
     name: "DANH MỤC",
   },
   {
-    path: "/",
+    path: "/v",
     name: "HOME",
   },
   {
@@ -52,7 +52,7 @@ const SubRouter = [
     name: "BÁN CHẠY",
   },
   {
-    path: "consignment",
+    path: "/sub",
     name: "KÝ GỬI",
   },
 ];
