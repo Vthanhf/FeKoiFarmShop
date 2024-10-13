@@ -22,9 +22,9 @@
     border-radius: 15px;
     font-family: Arial, Helvetica, sans-serif;
     width: 500px;
-    height: 600px;
     background-color: white;
     padding: 30px;
+    margin-top: 100px;
     margin-left: 100px;
 }
 .authen-template_form h1{
