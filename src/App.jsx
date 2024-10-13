@@ -19,7 +19,7 @@ import Submission from "./pages/submission/Submission";
 import FAQ from "./pages/FAQs/faqs";
 import Voucher from "./pages/Voucher/Voucher";
 import SubmissionSuccess from './pages/submission/SubmissionSuccess'; // Adjust the path as necessary
-
+import OrderManagement from "./pages/Customer/Customer";
 
 // import StudentManagement from "./StudentManagement";
 
@@ -115,6 +115,10 @@ function App() {
         {
           path: "success",
           element: <SubmissionSuccess />,
+        },
+        {
+          path: "customer",
+          element: <OrderManagement />,
         },
       ],
     },
