@@ -10,6 +10,7 @@ import { googleProvider } from '../../config/firebase'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import api from '../../config/axios'
+import "./index.css";
 
 function LoginPage() {
     const navigate = useNavigate();
@@ -76,7 +77,8 @@ function LoginPage() {
             </FormItem>
             <Button type='primary' htmlType='submit'>Login</Button>
 
-            <Button onClick={handleLoginGoogle}>Login google</Button>
+           <Button className='buttonGoogle' onClick={handleLoginGoogle}>Login google</Button>
+           
 
             <Link to="/">Home</Link>
         </Form>
