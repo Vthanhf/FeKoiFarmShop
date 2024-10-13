@@ -29,7 +29,7 @@ const items = [
   getItem('Dashboard', '1', <PieChartOutlined />),
   getItem('Inventory', '2', <DesktopOutlined />),
   getItem('Orders', 'sub1', <UserOutlined />, [
-    getItem('Pending Orders', '3'),
+    getItem('Manage Orders', '3'),
     getItem('Completed Orders', '4'),
   ]),
   getItem('Customers', 'sub2', <TeamOutlined />, [
@@ -48,6 +48,15 @@ const Dashboard = () => {
 
   const handleMenuClick = (e) => {
     setSelectedKey(e.key);
+  };
+  const breadcrumbItems = {
+    '1': ['Management', 'Dashboard'],
+    '2': ['Management', 'Inventory'],
+    '3': ['Management', 'Manage Orders'],
+    '4': ['Management', 'Completed Orders'],
+    '5': ['Management', 'Customer List'],
+    '6': ['Management', 'Customer Feedback'],
+    '7': ['Management', 'Reports'],
   };
   const RevenueChart = () => {
     const data = [
@@ -93,18 +102,6 @@ const Dashboard = () => {
             </Col>
           </Row>
           <RevenueChart />
-          <Table
-            dataSource={[
-              { key: '1', id: 'IK0847', customer: 'Nguyễn Văn A', total: '85.000.000đ', status: 'Đã hoàn thành' },
-              // ... existing data ...
-            ]}
-            columns={[
-              { title: 'ID Đơn Hàng', dataIndex: 'id', key: 'id' },
-              { title: 'Tên Khách Hàng', dataIndex: 'customer', key: 'customer' },
-              { title: 'Tổng Tiền', dataIndex: 'total', key: 'total' },
-              { title: 'Trạng Thái', dataIndex: 'status', key: 'status' },
-            ]}
-          />
           <Table
               dataSource={[
                 { key: '1', id: 'IK0847', customer: 'Nguyễn Văn A', total: '85.000.000đ', status: 'Đã hoàn thành' },
@@ -179,8 +176,9 @@ const Dashboard = () => {
         <Header style={{ padding: 0, background: colorBgContainer }} />
         <Content style={{ margin: '0 16px' }}>
           <Breadcrumb style={{ margin: '16px 0' }}>
-            <Breadcrumb.Item>Management</Breadcrumb.Item>
-            <Breadcrumb.Item>Dashboard</Breadcrumb.Item>
+            {breadcrumbItems[selectedKey].map((item, index) => (
+              <Breadcrumb.Item key={index}>{item}</Breadcrumb.Item>
+            ))}
           </Breadcrumb>
           <div
             style={{
@@ -194,6 +192,7 @@ const Dashboard = () => {
           </div>
         </Content>
         <Footer style={{ textAlign: 'center' }}>
+          {/* Footer content */}
         </Footer>
       </Layout>
     </Layout>
