@@ -8,11 +8,35 @@
 
 .voucher-list {
     margin-top: 20px;
+    display: flex;
+    flex-direction: column;
 }
 
 .voucher-item {
     border: 2px solid #ccc; /* Khung cho voucher */
     border-radius: 10px;
-    padding: 10px;
-    margin: 10px;
-} 
+    padding: 20px;
+    margin: 10px 0;
+    background-color: #fff; /* Màu nền cho thẻ voucher */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Đổ bóng cho thẻ voucher */
+    position: relative; /* Để có thể thêm hình ảnh */
+}
+
+.voucher-content {
+    text-align: center;
+}
+
+.voucher-amount {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.voucher-description {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+.voucher-validity {
+    font-size: 12px;
+    color: gray;
+}

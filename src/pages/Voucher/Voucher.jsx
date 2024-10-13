@@ -25,8 +25,11 @@ function Voucher() {
             <div className="voucher-list">
                 {vouchers.map((voucher, index) => (
                     <div key={index} className="voucher-item">
-                        <p>đ{voucher} The Koi Legend</p>
-                        <p>Valid until 01 February 2022</p>
+                        <div className="voucher-content">
+                            <p className="voucher-amount">đ{voucher}</p>
+                            <p className="voucher-description">The Koi Legend</p>
+                            <p className="voucher-validity">Valid until 01 February 2022</p>
+                        </div>
                     </div>
                 ))}
             </div>
