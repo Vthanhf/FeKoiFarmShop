@@ -40,3 +40,40 @@
     font-size: 12px;
     color: gray;
 }
+
+.voucher-display {
+    text-align: center;
+    padding: 20px;
+}
+
+.main-voucher {
+    margin-bottom: 20px;
+}
+
+.main-voucher img {
+    width: 300px; /* Kích thước hình ảnh voucher chính */
+    height: auto;
+}
+
+.voucher-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.voucher-item {
+    margin: 10px;
+    text-align: center;
+}
+
+.voucher-item img {
+    width: 150px; /* Kích thước hình ảnh voucher phụ */
+    height: auto;
+}
+
+.get-more-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
