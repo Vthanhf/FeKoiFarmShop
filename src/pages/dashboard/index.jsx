@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import {
   DesktopOutlined,
   FileOutlined,
+  GiftOutlined,
   PieChartOutlined,
   TeamOutlined,
   UserOutlined,
@@ -13,6 +14,7 @@ import Inventory from './Inventory';
 import { LineChart, Line, XAxis, YAxis, Tooltip } from 'recharts'
 import Orders from './Orders';
 import Customers from './Customers';
+import Voucher from './Voucheradmin';
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -37,6 +39,8 @@ const items = [
     getItem('Customer Feedback', '6'),
   ]),
   getItem('Reports', '7', <FileOutlined />),
+  getItem('Voucher', '8', <GiftOutlined />), //thêm biểu tượng 
+
 ];
 
 const Dashboard = () => {
@@ -57,6 +61,7 @@ const Dashboard = () => {
     '5': ['Management', 'Customer List'],
     '6': ['Management', 'Customer Feedback'],
     '7': ['Management', 'Reports'],
+    '8': ['Management', 'Voucher'], //new
   };
   const RevenueChart = () => {
     const data = [
@@ -135,7 +140,7 @@ const Dashboard = () => {
         return <Customers />;
       case '6':
         return <Customers />;
-        case '7': // Thêm case cho trang quản lý doanh thu
+      case '7': // Thêm case cho trang quản lý doanh thu
       return (
         <>
           <h2>Quản Lý Doanh Thu</h2>
@@ -154,7 +159,8 @@ const Dashboard = () => {
           />
         </>
       );
-
+      case '8': // Thêm case cho Voucher
+        return <Voucher />;
       default:
         return <h2>Welcome to the Koi Fish Management Dashboard</h2>;
     }

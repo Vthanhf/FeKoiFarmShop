@@ -1,0 +1,30 @@
+/* pages/Voucher.css */
+.voucher-container {
+    padding: 20px;
+    background-color: #f9f9f9; /* Nền sáng cho trang */
+    border-radius: 8px; /* Bo góc cho container */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
+}
+
+.voucher-container h1 {
+    margin-bottom: 20px;
+    color: #333; /* Màu chữ cho tiêu đề */
+}
+
+.voucher-container .ant-btn {
+    margin-bottom: 16px; /* Khoảng cách dưới nút */
+}
+
+.ant-table {
+    background-color: #fff; /* Nền trắng cho bảng */
+    border-radius: 8px; /* Bo góc cho bảng */
+}
+
+.ant-table th {
+    background-color: #e6f7ff; /* Màu nền cho tiêu đề bảng */
+    color: #333; /* Màu chữ cho tiêu đề bảng */
+}
+
+.ant-table td {
+    color: #666; /* Màu chữ cho ô dữ liệu */
+}
