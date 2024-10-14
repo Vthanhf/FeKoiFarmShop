@@ -22,7 +22,7 @@ const KoiSection = () => {
             ></iframe>
           </div>
           <div className="text-white w-1/2 md:pl-4 text-center md:text-left">
-            <h1 className="text-5xl font-bold mb-4">Koi Karashi</h1>
+            <h1 className="text-5xl font-bold mb-4 text-white">Koi Karashi</h1>
             <p className="text-xl w-3/4">
               Koi Karashi, a type of Koi, has a uniform color of yellow ranging from bright yellow to deep yellow, very beautiful and fresh throughout.
             </p>

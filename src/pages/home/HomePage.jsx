@@ -56,11 +56,11 @@ const products = [
   { id: 1, name: 'Goshiki – koi #w0729n005-w0203n009', price: '2,000,000đ', breeder: "Sài gòn Koi", sex: "Male", born: "2023", size: "13.00 inch/ 34.5 cm", species: "Goshiki", image: 'https://i.imgur.com/A1hsD3s.png' },
   { id: 2, name: 'Goshiki – koi #w0729n005-w0203n009', price: '2,000,000đ', breeder: "Sài gòn Koi", sex: "Male", born: "2023", size: "13.00 inch/ 34.5 cm", species: "Goshiki", image: 'https://i.imgur.com/A1hsD3s.png' },
   { id: 3, name: 'Goshiki – koi #w0729n005-w0203n009', price: '2,000,000đ', breeder: "Sài gòn Koi", sex: "Male", born: "2023", size: "13.00 inch/ 34.5 cm", species: "Goshiki", image: 'https://i.imgur.com/A1hsD3s.png' },
-  { id: 4, name: 'Goshiki – koi #w0729n005-w0203n009', price: '2,000,000đ', breeder: "Sài gòn Koi", sex: "Male", born: "2023", size: "13.00 inch/ 34.5 cm", species: "Goshiki", image: 'https://i.imgur.com/A1hsD3s.png' },
-  { id: 5, name: 'Goshiki – koi #w0729n005-w0203n009', price: '2,000,000đ', breeder: "Sài gòn Koi", sex: "Male", born: "2023", size: "13.00 inch/ 34.5 cm", species: "Goshiki", image: 'https://i.imgur.com/A1hsD3s.png' },
-  { id: 6, name: 'Goshiki – koi #w0729n005-w0203n009', price: '2,000,000đ', breeder: "Sài gòn Koi", sex: "Male", born: "2023", size: "13.00 inch/ 34.5 cm", species: "Goshiki", image: 'https://i.imgur.com/A1hsD3s.png' },
-  { id: 7, name: 'Goshiki – koi #w0729n005-w0203n009', price: '2,000,000đ', breeder: "Sài gòn Koi", sex: "Male", born: "2023", size: "13.00 inch/ 34.5 cm", species: "Goshiki", image: 'https://i.imgur.com/A1hsD3s.png' },
-  { id: 8, name: 'Goshiki – koi #w0729n005-w0203n009', price: '2,000,000đ', breeder: "Sài gòn Koi", sex: "Male", born: "2023", size: "13.00 inch/ 34.5 cm", species: "Goshiki", image: 'https://i.imgur.com/A1hsD3s.png' },
+  //{ id: 4, name: 'Goshiki – koi #w0729n005-w0203n009', price: '2,000,000đ', breeder: "Sài gòn Koi", sex: "Male", born: "2023", size: "13.00 inch/ 34.5 cm", species: "Goshiki", image: 'https://i.imgur.com/A1hsD3s.png' },
+  //{ id: 5, name: 'Goshiki – koi #w0729n005-w0203n009', price: '2,000,000đ', breeder: "Sài gòn Koi", sex: "Male", born: "2023", size: "13.00 inch/ 34.5 cm", species: "Goshiki", image: 'https://i.imgur.com/A1hsD3s.png' },
+  //{ id: 6, name: 'Goshiki – koi #w0729n005-w0203n009', price: '2,000,000đ', breeder: "Sài gòn Koi", sex: "Male", born: "2023", size: "13.00 inch/ 34.5 cm", species: "Goshiki", image: 'https://i.imgur.com/A1hsD3s.png' },
+  //{ id: 7, name: 'Goshiki – koi #w0729n005-w0203n009', price: '2,000,000đ', breeder: "Sài gòn Koi", sex: "Male", born: "2023", size: "13.00 inch/ 34.5 cm", species: "Goshiki", image: 'https://i.imgur.com/A1hsD3s.png' },
+  //{ id: 8, name: 'Goshiki – koi #w0729n005-w0203n009', price: '2,000,000đ', breeder: "Sài gòn Koi", sex: "Male", born: "2023", size: "13.00 inch/ 34.5 cm", species: "Goshiki", image: 'https://i.imgur.com/A1hsD3s.png' },
 ];
 
 
