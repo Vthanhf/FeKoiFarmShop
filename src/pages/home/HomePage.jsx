@@ -8,7 +8,7 @@ import koi3 from "../../assets/koi-dom.svg";
 import koi4 from "../../assets/koi-dom.svg";
 import koi5 from "../../assets/koi-dom.svg";
 import Slider from "../../components/home/Slider";
-import ImageRow from "../../components/home/ImageRow";
+//import ImageRow from "../../components/home/ImageRow";
 import KoiSection from "../../components/home/KoiSection";
 import { Row } from 'antd';
 import CardProduct from '../../components/Card/CardProduct';
@@ -77,20 +77,18 @@ const HomePage = () => {
 
         {/* Left-aligned Content */}
         <div className="relative max-w-2xl text-left p-6">
-          <h2 className="text-xl font-bold uppercase">
+          <h2 className="text-xl font-bold uppercase text-white">
             Cá Koi Nhật Bản Chất Lượng Cao Nhất <br />
             (Nishikigoi) Được Bán Từ Niigata, Nhật Bản
           </h2>
           <p className="mt-4 leading-relaxed">
-            Công ty Onkoi Quang Minh được thành lập bắt đầu từ năm 2007, khi thị
-            trường chơi Koi Nhật tại Việt Nam vẫn trong giai đoạn sơ khai, phần
-            lớn là chơi theo sở thích và vẫn chưa nở rộ bởi cá Koi Nhật khá đắt
-            đỏ và kén người chơi nên có thể nói, với hơn 10 năm kinh doanh uy
-            tín và phát triển, Onkoi Quang Minh là một trong số ít đơn vị, cá
-            nhân đi đầu trong lĩnh vực phân phối Koi Nhật Bản chính hiệu. . Ở
-            thời điểm này, đội ngũ nhân viên của đơn vị chỉ đạt một con số khiêm
-            tốn khoảng 10 người. Sau một thời gian phát triển mạnh mẽ, số lượng
-            nhân viên hoạt động tại đơn vị đã lên đến con số trên 50 người.
+          Sellkoi Hồng Kiệt, được thành lập vào năm 2024 khi thị trường cá Koi Nhật
+           tại Việt Nam đã phát triển mạnh mẽ, nhưng vẫn chủ yếu phục vụ cho những 
+           người chơi cá Koi theo sở thích. Cá Koi Nhật Bản vẫn có giá thành khá cao 
+           và kén người chơi. Mặc dù mới hoạt động, Sellkoi Hồng Kiệt đã nhanh chóng 
+           xây dựng uy tín và trở thành một trong những đơn vị tiên phong trong việc 
+           phân phối cá Koi Nhật Bản chính gốc. Ban đầu, công ty có khoảng 10 nhân viên, 
+           nhưng đang trên đà phát triển mạnh mẽ.
           </p>
           <div className="text-center">
             <button className="mt-6 px-6 py-2 bg-[#FFF1DD] text-black font-bold rounded-full shadow-lg hover:bg-gray-200">

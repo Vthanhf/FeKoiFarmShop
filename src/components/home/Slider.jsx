@@ -7,7 +7,7 @@ const slides = [
     title: "",
     description: "",
     background: "bg-black",
-    imageUrl: "https://play-lh.googleusercontent.com/_jj8EVlrpn-cp4DYZCWKmCty6DtLfkTPCTEPGt7HjNp2FjeaCRSGEbym9VFCbeksTDbp",
+    imageUrl: background,
   },
   {
     title: "",
