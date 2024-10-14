@@ -18,12 +18,13 @@ import RegisterPage from "./pages/register/register";
 import Submission from "./pages/submission/Submission";
 import FAQ from "./pages/FAQs/faqs";
 import Voucher from "./pages/Voucher/Voucher";
-import SubmissionSuccess from './pages/submission/SubmissionSuccess'; // Adjust the path as necessary
+import SubmissionSuccess from "./pages/submission/SubmissionSuccess"; // Adjust the path as necessary
 import OrderManagement from "./pages/Customer/Customer";
 import ConsignmentOrders from "./pages/Customer/ConsignmentOrders";
 import RegularOrders from "./pages/Customer/RegularOrders";
 import AccountInfo from "./pages/Customer/AccountInfo";
 import ChangePassword from "./pages/Customer/ChangePassword";
+import CustomerSP from "./pages/CustomerSP/CustomerSP";
 
 // import StudentManagement from "./StudentManagement";
 
@@ -161,6 +162,11 @@ function App() {
     {
       path: "dashboard",
       element: <Dashboard />,
+    },
+
+    {
+      path: "support",
+      element: <CustomerSP />,
     },
   ]);
 
