@@ -1,26 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
-
 .ABC{
     color: white;
 }
 
-body {
-    min-height: 100vh;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.contact-page {
     background-image: url('https://cdn.pixabay.com/photo/2021/04/04/05/43/animal-6149183_1280.jpg');
     background-size: cover;
     background-position: center;
-    position: relative;
+    min-height: 100vh; /* Đảm bảo chiều cao đầy đủ */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff; /* Màu chữ cho dễ đọc */
 }
 
 .section-header {
@@ -28,16 +21,12 @@ body {
     margin-bottom: 50px;
 }
 
-.section-header h2 {
-    color: #FFF;
-    font-weight: bold;
-    font-size: 3em;
-}
-
 .container {
     max-width: 1080px;
     margin: auto;
     padding: 20px;
+    background: rgba(255, 255, 255, 0.8); /* Nền trắng mờ cho phần nội dung */
+    border-radius: 10px; /* Bo góc cho phần nội dung */
 }
 
 .row {
@@ -75,13 +64,14 @@ body {
 }
 
 .contact-info-content p {
-    color: #FFF;
+    color: #333;
 }
 
 .contact-form {
     background-color: #fff;
     padding: 40px;
     width: 45%;
+    border-radius: 10px; /* Bo góc cho phần form */
 }
 
 .contact-form h2 {

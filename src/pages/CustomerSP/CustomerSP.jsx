@@ -1,12 +1,11 @@
-// eslint-disable-next-line no-unused-vars
 // pages/CustomerSP/CustomerSP.jsx
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
-import './CustomerSP.css';
+import './styles.css';
 
 const CustomerSP = () => {
     return (
-        <section>
+        <section className="contact-page">
             <div className="section-header">
                 <h2>Contact Us</h2>
                 <p className='ABC'>Have a question or need assistance? Reach out to us via email, phone, or the contact form below.</p>
