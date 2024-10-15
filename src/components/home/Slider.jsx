@@ -1,26 +1,27 @@
 import { useState, useEffect } from "react";
 import arrows from "../../assets/arrows.svg";
 import background from "../../assets/background-white.svg";
+import background2 from "../../assets/ca-koi-nhat.jpg";
 
 const slides = [
   {
     title: "",
     description: "",
+    background: "bg-cover bg-center",
+    imageUrl: "https://image.slidesdocs.com/responsive-images/background/a-stunning-3d-depiction-of-multicolored-koi-fish-showcasing-a-range-of-intricate-designs-powerpoint-background_78c650617b__960_540.jpg",
+  },
+  {
+    title: "",
+    description: "",
+    background: "bg-cover bg-center",
+    imageUrl: background,
+  },
+  {
+    title: "",
+    description: "",
     background: "bg-black",
-    imageUrl: background,
-  },
-  {
-    title: "",
-    description: "",
-    background: "bg-cover bg-center",
-    imageUrl: background,
-  },
-  {
-    title: "",
-    description: "",
-    background: "bg-cover bg-center",
-    imageUrl:
-      "https://image.slidesdocs.com/responsive-images/background/a-stunning-3d-depiction-of-multicolored-koi-fish-showcasing-a-range-of-intricate-designs-powerpoint-background_78c650617b__960_540.jpg",
+    imageUrl: background2,
+      
   },
 ];
 
