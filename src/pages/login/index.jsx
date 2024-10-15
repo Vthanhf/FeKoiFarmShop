@@ -1,6 +1,3 @@
-/* eslint-disable no-unused-vars */
- 
-import React from 'react'
 import AuthenTemplate from '../../components/authen-template'
 import { Button, Checkbox, Form } from 'antd'
 import FormItem from 'antd/es/form/FormItem'
@@ -38,6 +35,9 @@ function LoginPage() {
            if(role === "ADMIN"){
             navigate("/dashboard");
            }
+           else if(role === "CUSTOMER"){
+            navigate("/v")
+           }
         }catch(err){
             toast.err(err.response.data)
         }
@@ -53,7 +53,7 @@ function LoginPage() {
             }}
             onFinish={handleLogin}
             >
-            <FormItem label= "Username" name="username" rules={[
+            <FormItem label= "Username" name="phone" rules={[
                 {
                     required: true,
                     message: "Please input your username!"    
