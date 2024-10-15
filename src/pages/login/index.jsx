@@ -30,13 +30,15 @@ function LoginPage() {
     const handleLogin = async (values) =>{
         try{
            const response = await api.post('login', values)
-           const { role } = response.data;
+           const { role,token} = response.data;
+
+           localStorage.setItem("token", token);
 
            if(role === "ADMIN"){
             navigate("/dashboard");
            }
            else if(role === "CUSTOMER"){
-            navigate("/v")
+            navigate("/v/home")
            }
         }catch(err){
             toast.err(err.response.data)

@@ -1,9 +1,11 @@
-/* eslint-disable no-unused-vars */
+
 // path/to/Inventory.jsx
-import React, { useState } from "react";
-import { Table, Button, Modal, Form, Input, message } from "antd";
+import { useState, useEffect } from "react";
+import { Table, Button, Modal, Form, Input, Space, Popconfirm, } from "antd";
 import "./Inventory.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import api from '../../config/axios';
+import { toast } from 'react-toastify';
 //npm install @fortawesome/react-fontawesome @fortawesome/free-solid-svg-icons
 import {
   faPlus,
@@ -15,62 +17,139 @@ import {
   faTrash,
   faSignature,
 } from "@fortawesome/free-solid-svg-icons";
+import FormItem from "antd/es/form/FormItem";
 
 const Inventory = () => {
-  const [dataSource, setDataSource] = useState([]);
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [datas, setDatas] = useState([]);
   const [form] = Form.useForm();
+  const [showModal, setshowModal] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const showModal = () => {
-    setIsModalVisible(true);
+  //Get
+    const fetchData = async () => {
+      try {
+        const response = await api.get("koi/getAllKoi");
+        setDatas(response.data);
+      } catch (error) {
+        console.log(error);
+        //toast.error(error.response.data);
+      }
+    };
+//create update
+const handleSubmit = async (values) => {
+  try {
+    setLoading(true);
+
+    if(values.id){
+      const response = await api.put(`koi/updateKoi/${values.id}`, values);
+      console.log(response);
+    }else{
+      const response = await api.post("koi/createKoi", values);
+      console.log(response);
+    }
+
+    toast.success("Thêm sản phẩm thành công!");
+    fetchData();
+    form.resetFields();
+    setshowModal(false);
+  } catch (e) {
+    toast.error(e.response.data);
+  }finally{
+    setLoading(false);
+  }
+
+};
+
+  useEffect(() => {
+  fetchData();
+  }, []);
+
+  //delete
+  const handleDelete = async (id) => {
+    try {
+      await api.delete(`koi/${id}`);
+      toast.success("Xóa sản phẩm thành công!");
+      fetchData();
+    } catch (error) {
+      toast.error(error.response.data);
+    }
   };
+const columns = [
+  {
+    title: 'ID',
+    dataIndex: 'id' ,
+  },
+  {
+    title: 'Tên cá Koi',
+    dataIndex: 'koiName',
+  },
+  {
+    title: 'Size',
+    dataIndex: 'koiSize',
+  },
+  {
+    title: 'Năm sinh',
+    dataIndex: 'koiBorn',
+  },
+  {
+    title: 'Giới tính',
+    dataIndex: 'koiGender',
+  },
+  {
+    title: 'Giá tiền',
+    dataIndex: 'price',
+  },
+  {
+    title: 'Mô tả',
+    dataIndex: 'koiDes',
+  },
+  {
+    title: 'Giải thưởng',
+    dataIndex: 'koiPrize',
+  },
+  {
+    title: 'Tình trạng',
+    dataIndex: 'koiStatus',
+  },
+  {
+    title: 'Tên trang trại',
+    dataIndex: 'breederName',
+  },
+  { 
+    title: 'Loại cá',
+    dataIndex: 'varietyName',
+  },
+  {
+    title: 'Action',
+    dataIndex: 'id',
+    key: 'id',
+    render: (id, category) => (
+      <Space direction="horizontal">
+         <Button type="primary" 
+         onClick={() => {
+          setshowModal(true);
+          form.setFieldsValue(category);
 
-  const handleOk = () => {
-    form.validateFields().then((values) => {
-      setDataSource([...dataSource, { key: Date.now(), ...values }]);
-      setIsModalVisible(false);
-      form.resetFields();
-    });
-  };
+        }}>Sửa</Button> 
 
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
+        <Button type="danger">Xóa</Button>
+        <Popconfirm
+          title="Bạn có chắc chắn muốn xóa?"
+          onConfirm={() => handleDelete(id)}
+        >
+        </Popconfirm>
+      </Space>
+    ),
+  },
+];
 
-  const handleDelete = (key) => {
-    setDataSource(dataSource.filter((item) => item.key !== key));
-    message.success("Xóa sản phẩm thành công!");
-  };
+  
 
-  const columns = [
-    { title: "Mã sản phẩm", dataIndex: "code", key: "code" },
-    { title: "Tên sản phẩm", dataIndex: "name", key: "name" },
-    {
-      title: "Ảnh",
-      dataIndex: "image",
-      key: "image",
-      render: (text) => (
-        <img src={text} alt="product" style={{ width: 50, height: 50 }} />
-      ),
-    },
-    { title: "Số lượng", dataIndex: "quantity", key: "quantity" },
-    { title: "Tình trạng", dataIndex: "status", key: "status" },
-    { title: "Giá tiền", dataIndex: "price", key: "price" },
-    { title: "Danh mục", dataIndex: "category", key: "category" },
-    {
-      title: "Chức năng",
-      key: "action",
-      render: (_, record) => (
-        <Button type="link" onClick={() => handleDelete(record.key)}>
-          Xóa
-        </Button>
-      ),
-    },
-  ];
+
 
   return (
     <>
-      <Button className="custom-button green" onClick={showModal}>
+      <Button className="custom-button green" onClick={() => setshowModal(true)}>
         <FontAwesomeIcon icon={faPlus} /> Tạo mới sản phẩm
       </Button>
       <Button className="custom-button yellow">
@@ -94,50 +173,89 @@ const Inventory = () => {
       <Button className="custom-button pink">
         <FontAwesomeIcon icon={faSignature} /> Cá ký gửi
       </Button>
-      <Table dataSource={dataSource} columns={columns} />
+      <Table dataSource={datas} columns={columns} />
 
       <Modal
+        open={showModal}
+        onCancel={() => setshowModal(false)}
         title="Thêm sản phẩm"
-        visible={isModalVisible}
-        onOk={handleOk}
-        onCancel={handleCancel}
+        onOk={() => form.submit()}
+        confirmLoading={loading}
       >
-        <Form form={form} layout="vertical">
+        <Form form={form} layout="vertical" onFinish={handleSubmit}>
+          <FormItem name="id" hidden>
+            <Input />
+          </FormItem>
           <Form.Item
-            name="code"
-            label="Mã sản phẩm"
-            rules={[{ required: true }]}
+            name="koiName"
+            label="Tên cá Koi"
+            rules={[{ required: true, message: 'Không được để trống!' }]}
           >
             <Input />
           </Form.Item>
           <Form.Item
-            name="name"
-            label="Tên sản phẩm"
-            rules={[{ required: true }]}
+            name="koiSize"
+            label="Size"
+            rules={[{ required: true, message: 'Không được để trống!' }]}
           >
             <Input />
           </Form.Item>
           <Form.Item
-            name="quantity"
-            label="Số lượng"
-            rules={[{ required: true }]}
+            name="koiBorn"
+            label="Năm sinh"
+            rules={[
+              { required: true, message: 'Không được để trống!' },
+            ]}
           >
-            <Input type="number" />
+            <Input />
           </Form.Item>
           <Form.Item
-            name="status"
+            name="koiGender"
+            label="Giới tính"
+            rules={[{ required: true, message: 'Không được để trống!' }]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item 
+            name="price" 
+            label="Giá tiền" 
+            rules={[
+              { required: true, message: 'Không được để trống!' },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            name="koiDes"
+            label="Mô tả"
+          >
+            <Input.TextArea />
+          </Form.Item>
+          <Form.Item
+            name="koiPrize"
+            label="Giải thưởng"
+            rules={[{ required: true, message: 'Không được để trống!' }]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            name="koiStatus"
             label="Tình trạng"
-            rules={[{ required: true }]}
+            rules={[{ required: true, message: 'Không được để trống!' }]}
           >
             <Input />
           </Form.Item>
-          <Form.Item name="price" label="Giá tiền" rules={[{ required: true }]}>
+          <Form.Item
+            name="breederName"
+            label="Tên trang trại"
+            rules={[{ required: true, message: 'Không được để trống!' }]}
+          >
             <Input />
           </Form.Item>
           <Form.Item
-            name="category"
-            label="Danh mục"
-            rules={[{ required: true }]}
+            name="varietyName"
+            label="Loại cá"
+            rules={[{ required: true, message: 'Không được để trống!' }]}
           >
             <Input />
           </Form.Item>

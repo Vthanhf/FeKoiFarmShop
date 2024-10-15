@@ -25,6 +25,7 @@ import RegularOrders from "./pages/Customer/RegularOrders";
 import AccountInfo from "./pages/Customer/AccountInfo";
 import ChangePassword from "./pages/Customer/ChangePassword";
 import CustomerSP from "./pages/CustomerSP/CustomerSP";
+ import Inventory from "./pages/dashboard/Inventory";
 
 // import StudentManagement from "./StudentManagement";
 
@@ -60,7 +61,7 @@ function App() {
       ],
     },
     {
-      path: "",
+      path: "v",
       element: (
         <>
           <Header2 />
@@ -70,15 +71,15 @@ function App() {
       ),
       children: [
         {
-          path: "/v",
+          path: "home",
           element: <HomePage />,
         },
         {
-          path: "/productv",
+          path: "product",
           element: <ProductPage />,
         },
         {
-          path: "/detailv",
+          path: "detail",
           element: <ProductDetail />,
         },
         {
@@ -160,9 +161,29 @@ function App() {
     },
 
     {
+      path: "inventory",
+      element: <Inventory />,
+    },
+
+    {
       path: "dashboard",
       element: <Dashboard />,
     },
+    // {
+    //   path: "dashboard",
+    //   element: (
+    //     <>
+    //       <Outlet />
+    //     </>
+    //   ),
+    //   children: [
+    //     {
+    //       path: "inventory",
+    //       element: <Inventory />,
+    //     },
+        
+    //   ],
+    // },
 
     {
       path: "support",
