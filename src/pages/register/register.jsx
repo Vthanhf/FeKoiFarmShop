@@ -15,19 +15,32 @@ function RegisterPage() {
 
     const handleRegister = async (values) => {
       try {
-        values.role = "Customer"
-        // eslint-disable-next-line no-unused-vars
-        const response = await api.post("register",values);
-
-        toast.success("successfully register new account");
+        console.log('Sending data:', values); // Log dữ liệu trước khi gửi
+        values.role = "CUSTOMER"
+        const response = await api.post("register", values);
+        console.log('API Response:', response);
+    
+        toast.success("Successfully registered new account");
         navigate("/login");
       } catch (err) {
-        //toast.error("Error register new account")
-        toast.error(err.reponse.data);
-
+        console.error('API Error:', err);
+        if (err.response) {
+          // The request was made and the server responded with a status code
+          // that falls out of the range of 2xx
+          console.error('Error data:', err.response.data);
+          console.error('Error status:', err.response.status);
+          console.error('Error headers:', err.response.headers);
+          toast.error(err.response.data.message || "Error registering new account");
+        } else if (err.request) {
+          // The request was made but no response was received
+          console.error('Error request:', err.request);
+          toast.error("No response received from server");
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          console.error('Error message:', err.message);
+          toast.error("Error setting up the request");
+        }
       }
-      
-
     };
 
     return (
@@ -38,7 +51,7 @@ function RegisterPage() {
             }}
             onFinish={handleRegister}
             >
-            <FormItem label= "Username" name="username" rules={[{ required: true, message: 'Please input your username!' }]}>
+            <FormItem label= "Username" name="email" rules={[{ required: true, message: 'Please input your username!' }]}>
                 <Input/>
             </FormItem>
             <FormItem label= "Password" name="password" rules={[{ required: true, message: 'Please input your password!' }]}
@@ -55,7 +68,7 @@ function RegisterPage() {
             required: true,
             message: 'Please confirm your password!',
           },
-          ({ getFieldValue }) => ({
+          ({ getFieldValue }) => ({ 
             validator(_, value) {
               if (!value || getFieldValue('password') === value) {
                 return Promise.resolve();
