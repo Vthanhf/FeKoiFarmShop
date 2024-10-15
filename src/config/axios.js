@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = "";
+const baseUrl = "http://14.225.212.6:8080/api/";
 
 const config = {
   baseUrl,
