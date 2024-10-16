@@ -8,14 +8,14 @@ import { GoogleAuthProvider } from "firebase/auth";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyDbYzTux7rqqX5fKy-iyqipZSloBJmkGbU",
-  authDomain: "swp-project-948a4.firebaseapp.com",
-  projectId: "swp-project-948a4",
-  storageBucket: "swp-project-948a4.appspot.com",
-  messagingSenderId: "939306878951",
-  appId: "1:939306878951:web:38f4e445f7709492bc5f42",
-  measurementId: "G-EFMYBM9STT"
+const firebaseConfig = { 
+  apiKey : "AIzaSyDbYzTux7rqqX5fKy-iyqipZSloBJmkGbU" , 
+  authDomain : "swp-project-948a4.firebaseapp.com" , 
+  projectId : "swp-project-948a4" , 
+  storageBucket : "swp-project-948a4.appspot.com" , 
+  messagingSenderId : "939306878951" , 
+  appId : "1:939306878951:web:38f4e445f7709492bc5f42" , 
+  measurementId : "G-EFMYBM9STT" 
 };
 
 

@@ -7,8 +7,8 @@ const uploadFile = async (file) => {
     const storageRef = ref(storage, file.name);
     const response = await uploadBytes(storageRef, file);
     //lay duong dan den file vua tao
-    const downloadURL = await getDownloadURL(response, ref);
-    return downloadURL;
+    const url = await getDownloadURL(response, ref);
+    return url;
 };
 
 export default uploadFile;
