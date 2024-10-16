@@ -9,110 +9,71 @@
 // ];
 
 // path/to/ProductPage.jsx
-import React from 'react';
-import { useState, useEffect } from 'react';
-import { Layout, Menu, Card, Row, Col, Input, Button, Typography } from 'antd';
-import { UserOutlined, PhoneOutlined, ShoppingCartOutlined } from '@ant-design/icons';
-import './productPage.css';
+import React, { useState, useEffect } from 'react';
+import { Layout, Menu, Card, Row, Col, Button, Typography } from 'antd';
+import api from '../../config/axios';
 import CardProduct from '../../components/Card/CardProduct';
-import axios from 'axios';
 
 const { Header, Content, Footer, Sider } = Layout;
 const { Title } = Typography;
-
-// const products = [
-//   { id: 1, name: 'Goshiki – koi #w0729n005-w0203n009', price: '2,000,000đ', breeder: "Sài gòn Koi", sex: "Male", born: "2023", size: "13.00 inch/ 34.5 cm", species: "Goshiki", image: 'https://i.imgur.com/A1hsD3s.png' },
-//   { id: 2, name: 'Goshiki – koi #w0729n005-w0203n009', price: '2,000,000đ', breeder: "Sài gòn Koi", sex: "Male", born: "2023", size: "13.00 inch/ 34.5 cm", species: "Goshiki", image: 'https://i.imgur.com/A1hsD3s.png' },
-//   { id: 3, name: 'Goshiki – koi #w0729n005-w0203n009', price: '2,000,000đ', breeder: "Sài gòn Koi", sex: "Male", born: "2023", size: "13.00 inch/ 34.5 cm", species: "Goshiki", image: 'https://i.imgur.com/A1hsD3s.png' },
-//   { id: 4, name: 'Goshiki – koi #w0729n005-w0203n009', price: '2,000,000đ', breeder: "Sài gòn Koi", sex: "Male", born: "2023", size: "13.00 inch/ 34.5 cm", species: "Goshiki", image: 'https://i.imgur.com/A1hsD3s.png' },
-//   { id: 5, name: 'Goshiki – koi #w0729n005-w0203n009', price: '2,000,000đ', breeder: "Sài gòn Koi", sex: "Male", born: "2023", size: "13.00 inch/ 34.5 cm", species: "Goshiki", image: 'https://i.imgur.com/A1hsD3s.png' },
-//   { id: 6, name: 'Goshiki – koi #w0729n005-w0203n009', price: '2,000,000đ', breeder: "Sài gòn Koi", sex: "Male", born: "2023", size: "13.00 inch/ 34.5 cm", species: "Goshiki", image: 'https://i.imgur.com/A1hsD3s.png' },
-//   { id: 7, name: 'Goshiki – koi #w0729n005-w0203n009', price: '2,000,000đ', breeder: "Sài gòn Koi", sex: "Male", born: "2023", size: "13.00 inch/ 34.5 cm", species: "Goshiki", image: 'https://i.imgur.com/A1hsD3s.png' },
-//   { id: 8, name: 'Goshiki – koi #w0729n005-w0203n009', price: '2,000,000đ', breeder: "Sài gòn Koi", sex: "Male", born: "2023", size: "13.00 inch/ 34.5 cm", species: "Goshiki", image: 'https://i.imgur.com/A1hsD3s.png' },
-// ];
-// const [products, setProducts] = useState([]); // Khởi tạo state cho sản phẩm
-
-//   useEffect(() => {
-//     const fetchProducts = async () => { // Hàm gọi API
-//       try {
-//         const response = await api.get('/products'); // Gọi API để lấy sản phẩm
-//         setProducts(response.data); // Cập nhật state với dữ liệu nhận được
-//       } catch (error) {
-//         console.error("Error fetching products:", error); // Xử lý lỗi
-//       }
-//     };
-
-//     fetchProducts(); // Gọi hàm fetchProducts
-//   }, []);
 
 const ProductPage = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   
-
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        const response = await axios.get('koi/getAllKoi');
-        setProducts(Array.isArray(response.data) ? response.data : []);
-        setLoading(false);
+        const response = await api.get('koi/getAllKoi');
+
+        // Convert price to string format
+        const formattedProducts = response.data.map(product => ({
+          ...product,
+          price: `${product.price.toLocaleString()}đ` // Format price as string
+        }));
+
+        setProducts(Array.isArray(formattedProducts) ? formattedProducts : []);
       } catch (err) {
         setError('Failed to fetch products. Please try again later.');
+      } finally {
         setLoading(false);
       }
     };
 
     fetchProducts();
   }, []);
+
+  const menuItems = [
+    { key: "1", label: "Danh mục" },
+    {
+      key: "sub1",
+      label: "Loại Cá",
+      children: [
+        { key: "2", label: "Kujyaku" },
+        { key: "3", label: "Kin Showa" },
+        { key: "4", label: "Kujyaku" },
+        { key: "5", label: "Shiro Utsuri" },
+        { key: "6", label: "Beni Kikokuryu" },
+        { key: "7", label: "Asagi" },
+        { key: "8", label: "Goshiki" },
+        { key: "9", label: "Ginrin" },
+      ],
+    },
+    // Add other submenus similarly
+  ];
+
   return (
     <Layout>
       <Layout className='main-page'>
         <Sider width={200} className="site-layout-background">
-          <Menu mode="inline" defaultSelectedKeys={['1']}>
-            <Menu.Item key="1">Danh mục</Menu.Item>
-            <Menu.SubMenu key="sub1" title="Loại Cá">
-              <Menu.Item key="2">Kujyaku</Menu.Item>
-              <Menu.Item key="3">Kin Showa</Menu.Item>
-              <Menu.Item key="4">Kujyaku</Menu.Item>
-              <Menu.Item key="5">Shiro Utsuri</Menu.Item>
-              <Menu.Item key="6">Beni Kikokuryu</Menu.Item>
-              <Menu.Item key="7">Asagi</Menu.Item>
-              <Menu.Item key="8">Goshiki</Menu.Item>
-              <Menu.Item key="9">Ginrin</Menu.Item>
-            </Menu.SubMenu>
-            <Menu.SubMenu key="sub2" title="Khoảng Giá">
-              <Menu.Item key="10">Dưới 1 triệu</Menu.Item>
-              <Menu.Item key="11">1 triệu - 2 triệu</Menu.Item>
-              <Menu.Item key="12">Trên 2 triệu</Menu.Item>
-            </Menu.SubMenu>
-            <Menu.SubMenu key="sub3" title="Size Cá">
-              <Menu.Item key="13">&lt; 10.00 inch</Menu.Item>
-              <Menu.Item key="14">10.00 - 20.00 inch</Menu.Item>
-              <Menu.Item key="15">&gt; 20cm</Menu.Item>
-            </Menu.SubMenu>
-            <Menu.SubMenu key="sub4" title="Cân Nặng Cá">
-              <Menu.Item key="16">&lt; 6 kg</Menu.Item>
-              <Menu.Item key="17">6 - 8 kg</Menu.Item>
-              <Menu.Item key="18">&gt; 8 kg</Menu.Item>
-            </Menu.SubMenu>
-            <Menu.SubMenu key="sub5" title="Tuổi">
-              <Menu.Item key="19">&lt; 25 năm</Menu.Item>
-              <Menu.Item key="20">25 - 35 năm</Menu.Item>
-              <Menu.Item key="21">&gt; 35 năm</Menu.Item>
-            </Menu.SubMenu>
-            <Menu.SubMenu key="sub6" title="Combo">
-              <Menu.Item key="22">Combo 10 con</Menu.Item>
-              <Menu.Item key="23">Combo 20 con</Menu.Item>
-              <Menu.Item key="24">Combo tùy chọn</Menu.Item>
-            </Menu.SubMenu>
-          </Menu>
+          <Menu mode="inline" defaultSelectedKeys={['1']} items={menuItems} />
         </Sider>
         <Layout>
           <Content style={{ padding: '24px' }}>
             <div style={{ marginBottom: 16 }}>
-              <Title level={4}>Hàng Mới Về (999+ sản phẩm)</Title>
+              <Title level={4}>Hàng Mới Về</Title>
               <div>
                 <Button type="primary" style={{ marginRight: 8 }}>Mới nhất</Button>
                 <Button style={{ marginRight: 8 }}>Bán chạy</Button>
@@ -122,20 +83,19 @@ const ProductPage = () => {
               </div>
             </div>
             <Row gutter={16} className='product'>
-          {loading ? (
-            <Col span={24}><div>Loading...</div></Col>
-          ) : error ? (
-            <Col span={24}><div>{error}</div></Col>
-          ) : Array.isArray(products) && products.length > 0 ? (
-            products.map((product) => (
-              <CardProduct key={product.id} product={product} />
-            ))
-          ) : (
-            <Col span={24}><div>No products found.</div></Col>
-          )}
-        </Row>
+              {loading ? (
+                <Col span={24}><div>Loading...</div></Col>
+              ) : error ? (
+                <Col span={24}><div>{error}</div></Col>
+              ) : Array.isArray(products) && products.length > 0 ? (
+                products.map((product) => (
+                  <CardProduct key={product.id} product={product} />
+                ))
+              ) : (
+                <Col span={24}><div>No products found.</div></Col>
+              )}
+            </Row>
           </Content>
-          
         </Layout>
       </Layout>
     </Layout>
