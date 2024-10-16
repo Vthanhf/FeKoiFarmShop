@@ -33,7 +33,7 @@ const Rating = () => {
                 onChange={(e) => setFeedback(e.target.value)}
             />
             <Button type="primary" className="submit-button" onClick={handleSubmit}>
-            <Link to="/v"> Gửi Đánh Giá</Link>
+            <Link to="/v/home"> Gửi Đánh Giá</Link>
             </Button>
         </div>
     );

@@ -6,7 +6,7 @@ function Payment() {
   const navigate = useNavigate();
 
   const handleCheckout = () => {
-    navigate(`/paymentonline`);
+    navigate(`/v/paymentonline`);
   };
 
   return (

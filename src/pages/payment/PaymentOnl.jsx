@@ -82,7 +82,7 @@ const PaymentPageOnline = () => {
               <Title level={4}>Thanh Toán Thành Công!</Title>
               <p>Cảm ơn bạn đã thanh toán qua {paymentMethod}.</p>
               <button className='orderstatus-button'>
-                <Link to="/orderstatus" className="order-status-button">
+                <Link to="/v/orderstatus" className="order-status-button">
                 Xem Trạng Thái Đơn Hàng
               </Link>
               </button>

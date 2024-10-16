@@ -33,14 +33,14 @@ const OrderStatus = () => {
         children: 'Đơn hàng hoàn thành',
       },
       {
-        children: <Link to="/rating">Đánh giá</Link>,
-        dot: <Link to="/rating"><StarOutlined /></Link>
+        children: <Link to="/v/rating">Đánh giá</Link>,
+        dot: <Link to="/v/rating"><StarOutlined /></Link>
       },
     ]}
   />
       </Content>
       <button className='orderstatus-button'>
-        <Link to="/v">Trở về trang chủ</Link>
+        <Link to="/v/home">Trở về trang chủ</Link>
       </button>
     </Layout>
   );
