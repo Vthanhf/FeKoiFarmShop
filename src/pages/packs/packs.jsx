@@ -1,8 +1,48 @@
 // eslint-disable-next-line no-unused-vars
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./packs.css";
+import axios from 'axios';
 
 const Packs = () => {
+  const [products, setProducts] = useState([]); // Dữ liệu sản phẩm
+  const [loading, setLoading] = useState(true); // Trạng thái loading
+  const [error, setError] = useState(null); // Trạng thái lỗi
+  const [searchTerm, setSearchTerm] = useState(""); // Từ khóa tìm kiếm
+
+  // Hàm lấy dữ liệu sản phẩm
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get('koiPack/getAll'); // Gọi API để lấy tất cả sản phẩm
+        setProducts(Array.isArray(response.data) ? response.data : []);
+      } catch (err) {
+        console.error("Error fetching products:", err); // In ra lỗi
+        setError('Failed to fetch products. Please try again later.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  // Hàm tìm kiếm sản phẩm
+  const handleSearch = async (e) => {
+    e.preventDefault(); // Ngăn chặn reload trang
+    if (!searchTerm) return; // Nếu không có từ khóa tìm kiếm
+    try {
+      setLoading(true);
+      const response = await axios.get(`koiPack/search/${searchTerm}`); // Tìm kiếm sản phẩm
+      setProducts(Array.isArray(response.data) ? response.data : []);
+    } catch (err) {
+      console.error("Error searching products:", err); // In ra lỗi
+      setError('Failed to fetch products. Please try again later.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="packs-container">
       <h1 className="tittle">CÁ KOI NHỎ</h1>
@@ -35,8 +75,13 @@ const Packs = () => {
 
       <div className="search-section">
         <h2>Tìm cá Koi</h2>
-        <form className="search-form">
-          <input type="text" placeholder="Search here" />
+        <form className="search-form" onSubmit={handleSearch}>
+          <input
+            type="text"
+            placeholder="Search here"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
           <select>
             <option value="">Giá tuổi</option>
           </select>
@@ -53,99 +98,29 @@ const Packs = () => {
       </div>
 
       <div className="product-grid">
-        {/* Lặp lại phần này cho mỗi sản phẩm */}
-        <div className="product-card">
-          <div className="packcakoi"></div>
-          <h3 className="name">Kujaku - koi #w0739n012-v11021n004</h3>
-          <p className="price">$2,500.00</p>
-          <p className="trangtrai">Trang trại: Koi</p>
-          <p>Giới tính: Male</p>
-          <p>Năm sinh: 2022</p>
-          <p>Size: 21.00 inch / 53 cm</p>
-          <p>
-            Giống: <span className="red-text">Kujaku</span>
-          </p>
-          <button>Add to cart</button>
-        </div>
-        <div className="product-card">
-          <div className="packcakoi"></div>
-          <h3 className="name">Kujaku - koi #w0739n012-v11021n004</h3>
-          <p className="price">$2,500.00</p>
-          <p className="trangtrai">Trang trại: Koi</p>
-          <p>Giới tính: Male</p>
-          <p>Năm sinh: 2022</p>
-          <p>Size: 21.00 inch / 53 cm</p>
-          <p>
-            Giống: <span className="red-text">Kujaku</span>
-          </p>
-          <button>Add to cart</button>
-        </div>
-        <div className="product-card">
-          <div className="packcakoi"></div>
-          <h3 className="name">Kujaku - koi #w0739n012-v11021n004</h3>
-          <p className="price">$2,500.00</p>
-          <p className="trangtrai">Trang trại: Koi</p>
-          <p>Giới tính: Male</p>
-          <p>Năm sinh: 2022</p>
-          <p>Size: 21.00 inch / 53 cm</p>
-          <p>
-            Giống: <span className="red-text">Kujaku</span>
-          </p>
-          <button>Add to cart</button>
-        </div>
-        <div className="product-card">
-          <div className="packcakoi"></div>
-          <h3 className="name">Kujaku - koi #w0739n012-v11021n004</h3>
-          <p className="price">$2,500.00</p>
-          <p className="trangtrai">Trang trại: Koi</p>
-          <p>Giới tính: Male</p>
-          <p>Năm sinh: 2022</p>
-          <p>Size: 21.00 inch / 53 cm</p>
-          <p>
-            Giống: <span className="red-text">Kujaku</span>
-          </p>
-          <button>Add to cart</button>
-        </div>
-        <div className="product-card">
-          <div className="packcakoi"></div>
-          <h3 className="name">Kujaku - koi #w0739n012-v11021n004</h3>
-          <p className="price">$2,500.00</p>
-          <p className="trangtrai">Trang trại: Koi</p>
-          <p>Giới tính: Male</p>
-          <p>Năm sinh: 2022</p>
-          <p>Size: 21.00 inch / 53 cm</p>
-          <p>
-            Giống: <span className="red-text">Kujaku</span>
-          </p>
-          <button>Add to cart</button>
-        </div>
-        <div className="product-card">
-          <div className="packcakoi"></div>
-          <h3 className="name">Kujaku - koi #w0739n012-v11021n004</h3>
-          <p className="price">$2,500.00</p>
-          <p className="trangtrai">Trang trại: Koi</p>
-          <p>Giới tính: Male</p>
-          <p>Năm sinh: 2022</p>
-          <p>Size: 21.00 inch / 53 cm</p>
-          <p>
-            Giống: <span className="red-text">Kujaku</span>
-          </p>
-          <button>Add to cart</button>
-        </div>
-        <div className="product-card">
-          <div className="packcakoi"></div>
-          <h3 className="name">Kujaku - koi #w0739n012-v11021n004</h3>
-          <p className="price">$2,500.00</p>
-          <p className="trangtrai">Trang trại: Koi</p>
-          <p>Giới tính: Male</p>
-          <p>Năm sinh: 2022</p>
-          <p>Size: 21.00 inch / 53 cm</p>
-          <p>
-            Giống: <span className="red-text">Kujaku</span>
-          </p>
-          <button>Add to cart</button>
-        </div>
-        {/* Kết thúc sản phẩm */}
+        {loading ? (
+          <p>Loading...</p>
+        ) : error ? (
+          <p>{error}</p>
+        ) : products.length > 0 ? (
+          products.map((product) => (
+            <div className="product-card" key={product.id}>
+              <div className="packcakoi" style={{ backgroundImage: `url(${product.image})` }}></div>
+              <h3 className="name">{product.name}</h3>
+              <p className="price">{product.price}</p>
+              <p className="trangtrai">Trang trại: {product.breeder}</p>
+              <p>Giới tính: {product.sex}</p>
+              <p>Năm sinh: {product.born}</p>
+              <p>Size: {product.size}</p>
+              <p>
+                Giống: <span className="red-text">{product.species}</span>
+              </p>
+              <button>Add to cart</button>
+            </div>
+          ))
+        ) : (
+          <p>No products found.</p>
+        )}
       </div>
     </div>
   );
