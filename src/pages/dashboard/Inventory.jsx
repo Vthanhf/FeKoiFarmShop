@@ -65,13 +65,26 @@ const handleSubmit = async (values) => {
   }, []);
 
   //delete
-  const handleDelete = async (id) => {
+  const handleDelete = async (koiId) => {
+    if (!koiId) {
+      toast.error("ID sản phẩm không hợp lệ!"); // Thông báo nếu koiId không hợp lệ
+      return; // Dừng hàm nếu koiId không hợp lệ
+    }
+
     try {
-      await api.delete(`koi/${id}`);
+      console.log("Deleting Koi with ID:", koiId); // Log ID để kiểm tra
+      const response = await api.delete(`koi/${koiId}`);
+      console.log(response.data);
       toast.success("Xóa sản phẩm thành công!");
-      fetchData();
+      fetchData(); // Gọi lại hàm fetchData để cập nhật danh sách
     } catch (error) {
-      toast.error(error.response.data);
+      console.error("Error deleting Koi:", error); // Log lỗi để kiểm tra
+      if (error.response) {
+        console.error("Error response data:", error.response.data);
+        toast.error(error.response.data || "An error occurred");
+      } else {
+        toast.error("An error occurred");
+      }
     }
   };
 const columns = [
@@ -123,26 +136,27 @@ const columns = [
     title: 'Action',
     dataIndex: 'id',
     key: 'id',
-    render: (id, category) => (
+    render: (id, values) => (
       <Space direction="horizontal">
-         <Button type="primary" 
-         onClick={() => {
-          setshowModal(true);
-          form.setFieldsValue(category);
-
-        }}>Sửa</Button> 
-
-        <Button type="danger">Xóa</Button>
-        <Popconfirm
+        <Button type="primary" 
+          onClick={() => {
+            setshowModal(true);
+            form.setFieldsValue(values);
+            //handleUpdate(values);
+          }}>
+          Sửa
+        </Button> 
+  
+        <Popconfirm 
           title="Bạn có chắc chắn muốn xóa?"
           onConfirm={() => handleDelete(id)}
         >
+          <Button type="danger">Xóa</Button>
         </Popconfirm>
       </Space>
     ),
   },
 ];
-
   
 
 
@@ -183,7 +197,7 @@ const columns = [
         confirmLoading={loading}
       >
         <Form form={form} layout="vertical" onFinish={handleSubmit}>
-          <FormItem name="id" hidden>
+          <FormItem name="koiId" hidden>
             <Input />
           </FormItem>
           <Form.Item
