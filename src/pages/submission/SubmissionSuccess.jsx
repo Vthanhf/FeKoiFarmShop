@@ -7,7 +7,7 @@ function SubmissionSuccess() {
             title="Chờ đợi để trang trại duyệt đơn kí gửi"
             subTitle="Chúng tôi sẽ thông báo cho bạn khi đơn của bạn được duyệt."
             extra={[
-                <Button type="primary" key="home" onClick={() => window.location.href = '/v'}>
+                <Button type="primary" key="home" onClick={() => window.location.href = '/v/home'}>
                     Quay lại trang chủ
                 </Button>,
             ]}

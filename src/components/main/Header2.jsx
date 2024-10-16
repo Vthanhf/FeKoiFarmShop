@@ -9,22 +9,22 @@ import React from "react"
 
 const RouteMain = [
   {
-    path: "/customer",
+    path: "/v/customer",
     name: "Tên tài khoản",
     icon: hoso,
   },
   {
-    path: "/support",
+    path: "/v/support",
     name: "Hỗ trợ khách hàng",
     icon: support,
   },
   {
-    path: "/product",
+    path: "/v/product",
     name: "Sản phẩm",
     icon: shop,
   },
   {
-    path: "/cart",
+    path: "/v/cart",
     name: "",
     icon: cart,
   },
@@ -36,7 +36,7 @@ const SubRouter = [
     name: "DANH MỤC",
   },
   {
-    path: "/v",
+    path: "/v/home",
     name: "HOME",
   },
   {
@@ -52,7 +52,7 @@ const SubRouter = [
     name: "BÁN CHẠY",
   },
   {
-    path: "/sub",
+    path: "/v/sub",
     name: "KÝ GỬI",
   },
 ];

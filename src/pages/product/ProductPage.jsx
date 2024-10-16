@@ -9,10 +9,10 @@
 // ];
 
 // path/to/ProductPage.jsx
-import React, { useState, useEffect } from 'react';
-import { Layout, Menu, Card, Row, Col, Button, Typography } from 'antd';
-import api from '../../config/axios';
-import CardProduct from '../../components/Card/CardProduct';
+import React, { useState, useEffect } from "react";
+import { Layout, Menu, Card, Row, Col, Button, Typography } from "antd";
+import api from "../../config/axios";
+import CardProduct from "../../components/Card/CardProduct";
 
 const { Header, Content, Footer, Sider } = Layout;
 const { Title } = Typography;
@@ -21,22 +21,22 @@ const ProductPage = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        const response = await api.get('koi/getAllKoi');
+        const response = await api.get("koi/getAllKoi");
 
         // Convert price to string format
-        const formattedProducts = response.data.map(product => ({
+        const formattedProducts = response.data.map((product) => ({
           ...product,
-          price: `${product.price.toLocaleString()}đ` // Format price as string
+          price: `${product.price.toLocaleString()}đ`, // Format price as string
         }));
 
         setProducts(Array.isArray(formattedProducts) ? formattedProducts : []);
       } catch (err) {
-        setError('Failed to fetch products. Please try again later.');
+        setError("Failed to fetch products. Please try again later.");
       } finally {
         setLoading(false);
       }
@@ -66,33 +66,43 @@ const ProductPage = () => {
 
   return (
     <Layout>
-      <Layout className='main-page'>
+      <Layout className="main-page">
         <Sider width={200} className="site-layout-background">
-          <Menu mode="inline" defaultSelectedKeys={['1']} items={menuItems} />
+          <Menu mode="inline" defaultSelectedKeys={["1"]} items={menuItems} />
         </Sider>
         <Layout>
-          <Content style={{ padding: '24px' }}>
+          <Content style={{ padding: "24px" }}>
             <div style={{ marginBottom: 16 }}>
               <Title level={4}>Hàng Mới Về</Title>
               <div>
-                <Button type="primary" style={{ marginRight: 8 }}>Mới nhất</Button>
+                <Button type="primary" style={{ marginRight: 8 }}>
+                  Mới nhất
+                </Button>
                 <Button style={{ marginRight: 8 }}>Bán chạy</Button>
                 <Button style={{ marginRight: 8 }}>Giá thấp đến cao</Button>
                 <Button style={{ marginRight: 8 }}>Giá cao đến thấp</Button>
-                <Button type="link" style={{ color: 'red' }}>Cá đắt giá</Button>
+                <Button type="link" style={{ color: "red" }}>
+                  Cá đắt giá
+                </Button>
               </div>
             </div>
-            <Row gutter={16} className='product'>
+            <Row gutter={16} className="product">
               {loading ? (
-                <Col span={24}><div>Loading...</div></Col>
+                <Col span={24}>
+                  <div>Loading...</div>
+                </Col>
               ) : error ? (
-                <Col span={24}><div>{error}</div></Col>
+                <Col span={24}>
+                  <div>{error}</div>
+                </Col>
               ) : Array.isArray(products) && products.length > 0 ? (
                 products.map((product) => (
                   <CardProduct key={product.id} product={product} />
                 ))
               ) : (
-                <Col span={24}><div>No products found.</div></Col>
+                <Col span={24}>
+                  <div>No products found.</div>
+                </Col>
               )}
             </Row>
           </Content>

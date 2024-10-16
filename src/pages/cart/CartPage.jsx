@@ -44,7 +44,7 @@ const CartPage = () => {
   };
 
   const handleCheckout = () => {
-    navigate(`/payment`);
+    navigate(`/v/payment`);
   };
 
   const columns = [
