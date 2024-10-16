@@ -1,11 +1,10 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import koi1 from "../../assets/koi-dom.svg";
 import koi2 from "../../assets/koi-dom-2.svg";
 import bgImage from "../../assets/background-song.svg";
 import bgImage2 from "../../assets/bg-koi-boi.svg";
-
+import api from '../../config/axios';
 import bgImgae3 from "../../assets/background-white.svg";
 import koi3 from "../../assets/koi-dom.svg";
 import koi4 from "../../assets/koi-dom.svg";
@@ -57,20 +56,33 @@ const ListKoi = [
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);
-
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  console.log(loading);
+  console.log(error);
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://your-api-url/api/');
-        setProducts(response.data);
-      } catch (error) {
-        console.error('Lỗi khi tải dữ liệu sản phẩm:', error);
+        setLoading(true);
+        const response = await api.get('koi/getAllKoi');
+
+        // Convert price to string format
+        const formattedProducts = response.data.map(product => ({
+          ...product,
+          price: `${product.price.toLocaleString()}đ` // Format price as string
+        }));
+
+        setProducts(Array.isArray(formattedProducts) ? formattedProducts : []);
+      } catch (err) {
+        console.log(err);
+        setError('Failed to fetch products. Please try again later.');
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchProducts();
   }, []);
-
   return (
     <>
       <Slider className="slider"/>
