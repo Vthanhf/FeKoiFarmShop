@@ -1,4 +1,3 @@
-
 // path/to/Inventory.jsx
 import { useState, useEffect } from "react";
 import { Table, Button, Modal, Form, Input, Space, Popconfirm, } from "antd";
@@ -30,6 +29,7 @@ const Inventory = () => {
       try {
         const response = await api.get("koi/getAllKoi");
         setDatas(response.data);
+        console.log("Fetched Data:", response.data);
       } catch (error) {
         console.log(error);
         //toast.error(error.response.data);
@@ -40,8 +40,8 @@ const handleSubmit = async (values) => {
   try {
     setLoading(true);
 
-    if(values.id){
-      const response = await api.put(`koi/updateKoi/${values.id}`, values);
+    if(values.koiId){
+      const response = await api.put(`koi/update/${values.koiId}`, values);
       console.log(response);
     }else{
       const response = await api.post("koi/createKoi", values);
@@ -60,20 +60,33 @@ const handleSubmit = async (values) => {
 
 };
 
-  useEffect(() => {
-  fetchData();
-  }, []);
-
   //delete
-  const handleDelete = async (id) => {
+  const handleDelete = async (koiId) => {
+    if (!koiId) {
+      toast.error("ID sản phẩm không hợp lệ!"); // Thông báo nếu koiId không hợp lệ
+      return; // Dừng hàm nếu koiId không hợp lệ
+    }
+
     try {
-      await api.delete(`koi/${id}`);
+      console.log("Deleting Koi with ID:", koiId); // Log ID để kiểm tra
+      const response = await api.delete(`koi/${koiId}`);
+      console.log(response.data);
       toast.success("Xóa sản phẩm thành công!");
-      fetchData();
+      fetchData(); // Gọi lại hàm fetchData để cập nhật danh sách
     } catch (error) {
-      toast.error(error.response.data);
+      console.error("Error deleting Koi:", error); // Log lỗi để kiểm tra
+      if (error.response) {
+        console.error("Error response data:", error.response.data);
+        toast.error(error.response.data || "An error occurred");
+      } else {
+        toast.error("An error occurred");
+      }
     }
   };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 const columns = [
   {
     title: 'ID',
@@ -123,27 +136,27 @@ const columns = [
     title: 'Action',
     dataIndex: 'id',
     key: 'id',
-    render: (id, category) => (
+    render: (id, values) => (
       <Space direction="horizontal">
-         <Button type="primary" 
-         onClick={() => {
-          setshowModal(true);
-          form.setFieldsValue(category);
-
-        }}>Sửa</Button> 
-
-        <Button type="danger">Xóa</Button>
-        <Popconfirm
+        <Button type="primary" 
+          onClick={() => {
+            setshowModal(true);
+            form.setFieldsValue(values);
+            //handleUpdate(values);
+          }}>
+          Sửa
+        </Button> 
+  
+        <Popconfirm 
           title="Bạn có chắc chắn muốn xóa?"
           onConfirm={() => handleDelete(id)}
         >
+          <Button type="danger">Xóa</Button>
         </Popconfirm>
       </Space>
     ),
   },
 ];
-
-  
 
 
 
@@ -178,12 +191,12 @@ const columns = [
       <Modal
         open={showModal}
         onCancel={() => setshowModal(false)}
-        title="Thêm sản phẩm"
+        title="Cập nhật sản phẩm"
         onOk={() => form.submit()}
         confirmLoading={loading}
       >
         <Form form={form} layout="vertical" onFinish={handleSubmit}>
-          <FormItem name="id" hidden>
+          <FormItem name="koiId" hidden>
             <Input />
           </FormItem>
           <Form.Item
