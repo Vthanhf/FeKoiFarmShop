@@ -53,6 +53,7 @@ const CardProduct = ({product}) => {
         <Card.Meta description={"Năm sinh: " + product.koiBorn} />
         <Card.Meta description={"Size: " + product.koiSize} />
         <Card.Meta description={"Giống: " + product.species} />
+        
         <Button type="primary" style={{ marginTop: 16 }}>Mua ngay</Button>
       </Card>
     </Col>

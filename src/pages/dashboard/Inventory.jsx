@@ -1,6 +1,6 @@
 // path/to/Inventory.jsx
 import { useState, useEffect } from "react";
-import { Table, Button, Modal, Form, Input, Space, Popconfirm, } from "antd";
+import { Table, Button, Modal, Form, Input, Space, Popconfirm, AutoComplete  } from "antd";
 import "./Inventory.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import api from '../../config/axios';
@@ -23,6 +23,23 @@ const Inventory = () => {
   const [form] = Form.useForm();
   const [showModal, setshowModal] = useState(false);
   const [loading, setLoading] = useState(false);
+  const options = [
+    {
+      value: 'Dainichi farm',
+    },
+    {
+      value: 'KoiQ2',
+    },
+    {
+      value: 'KoiQ3',
+    },
+    {
+      value: 'Koi Thủ Đức',
+    },
+    {
+      value: 'Koi Farm Shop',
+    },
+  ];
 
   //Get
     const fetchData = async () => {
@@ -262,8 +279,16 @@ const columns = [
             name="breederName"
             label="Tên trang trại"
             rules={[{ required: true, message: 'Không được để trống!' }]}
-          >
-            <Input />
+          ><AutoComplete
+          style={{
+            width: 200,
+          }}
+          options={options}
+          placeholder="Breeder Name"
+          filterOption={(inputValue, option) =>
+            option.value.toUpperCase().indexOf(inputValue.toUpperCase()) !== -1
+          }
+        />
           </Form.Item>
           <Form.Item
             name="varietyName"
