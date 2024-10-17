@@ -15,7 +15,7 @@ const OrderManagement = () => {
                     <Menu.Item key="4" onClick={() => navigate('/v/regular')}>Đơn Thường</Menu.Item>
                     <Menu.Item key="5" onClick={() => navigate('/v/consignment')}>Đơn Kí Gửi</Menu.Item>
                     <Menu.Item key="2" onClick={() => navigate('/v/change-password')}>Đổi Mật Khẩu</Menu.Item>
-                    <Menu.Item key="3" onClick={() => navigate('/v/')}>Đăng Xuất</Menu.Item>
+                    <Menu.Item key="3" onClick={() => navigate('/')}>Đăng Xuất</Menu.Item>
                 </Menu>
             </Sider>
         </Layout>

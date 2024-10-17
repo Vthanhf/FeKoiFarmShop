@@ -6,8 +6,7 @@ const uploadFile = async (file) => {
     //luu cai file nay len firebase
     const storageRef = ref(storage, file.name);
     const response = await uploadBytes(storageRef, file);
-    //lay duong dan den file vua tao
-    const url = await getDownloadURL(response, ref);
+    const url = await getDownloadURL(response.ref);
     return url;
 };
 
