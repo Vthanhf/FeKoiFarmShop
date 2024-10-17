@@ -1,9 +1,12 @@
+
+// path/to/Package.jsx
 import { useState, useEffect } from "react";
 import { Table, Button, Modal, Form, Input, Space, Popconfirm } from "antd";
 import "./Inventory.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import api from "../../config/axios";
 import { toast } from "react-toastify";
+//npm install @fortawesome/react-fontawesome @fortawesome/free-solid-svg-icons
 import {
   faPlus,
   faFileDownload,
@@ -19,79 +22,81 @@ import FormItem from "antd/es/form/FormItem";
 const Package = () => {
   const [datas, setDatas] = useState([]);
   const [form] = Form.useForm();
-  const [showModal, setshowModal] = useState(false);
+  const [showModals, setshowModals] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  // Get data
-  const fetchData = async () => {
+  //GET Koi pack
+  const fetchKoiPackData = async () => {
     try {
-      const response = await api.get("koiPack/getAllKoiPack");
-      setDatas(response.data);
-      console.log("Fetched Data:", response.data);
+      const response = await api.get("koiPack/getAll");
+      setDatas(response.data); // Giả sử bạn muốn cập nhật dữ liệu tương tự như với Koi
+      console.log("Fetched Koi Pack Data:", response.data);
     } catch (error) {
       console.log(error);
+      //toast.error(error.response.data);
     }
   };
 
-  // Create or update package
-  const handleSubmit = async (values) => {
+
+  //create update Koi pack
+  const handleSubmitPack = async (values) => {
     try {
         setLoading(true);
-    
-        const breederRequestList = [];
-        if (values.breederRequestList) {
-          for (const item of values.breederRequestList) {
-            breederRequestList.push({
-              breederName: item.breederName.trim(),
-              breederPhone: item.breederPhone,
-              breederAdd: item.breederAdd.trim(),
-            });
-          }
-        }
-      
-        const varietyRequestList = [];
-        if (values.varietyRequestList) {
-          for (const item of values.varietyRequestList) {
-            varietyRequestList.push({
-              varietyName: item.varietyName.trim(),
-              varietyDes: item.varietyDes.trim(),
-            });
-          }
-        }
-    
-
-      const response = await api.post("koiPack/create", {
-        ...values,
-        breederRequestList: breederRequestList,
-        varietyRequestList: varietyRequestList,
-      });
-      console.log(response.data);
-      fetchData();
-      toast.success("Thêm gói sản phẩm thành công!");
-      form.resetFields();
-      setshowModal(false);
+  
+        // Tạo danh sách breederRequestList từ trường nhập liệu
+        const breederRequestList = values.breederRequestList.split(',').map(item => {
+            const [name, phone, address] = item.split('|'); // Tách thông tin theo dấu '|'
+            return {
+                breederName: name.trim(),
+                breederPhone: phone.trim(),
+                breederAdd: address.trim(),
+            };
+        });
+  
+        // Tạo danh sách varietyRequestList từ trường nhập liệu
+        const varietyRequestList = values.varietyRequestList.split(',').map(item => {
+            const [name, description] = item.split('|'); // Tách thông tin theo dấu '|'
+            return {
+                varietyName: name.trim(),
+                varietyDescription: description.trim(),
+            };
+        });
+  
+        const response = await api.post("koiPack/create", {
+            ...values,
+            breederRequestList: breederRequestList, // Gửi danh sách breederRequestList
+            varietyRequestList: varietyRequestList, // Gửi danh sách varietyRequestList
+        });
+  
+        console.log(response);
+        toast.success("Thêm sản phẩm thành công!");
+        fetchKoiPackData(); // Cập nhật dữ liệu
+        form.resetFields(); // Reset form
+        setshowModals(false); // Đóng modal
     } catch (e) {
-      toast.error(e.response.data || "Có lỗi xảy ra!");
+        toast.error(e.response.data || "Có lỗi xảy ra!"); // Hiển thị thông báo lỗi
     } finally {
-      setLoading(false);
+        setLoading(false);
     }
   };
 
-  // Delete package
-  const handleDelete = async (koiPackId) => {
+  //delete Koi pack
+  const handleDeletePack = async (koiPackId) => {
     if (!koiPackId) {
-      toast.error("ID gói sản phẩm không hợp lệ!");
-      return;
+      toast.error("ID sản phẩm không hợp lệ!"); // Thông báo nếu koiId không hợp lệ
+      return; // Dừng hàm nếu koiId không hợp lệ
     }
 
     try {
+      console.log("Deleting Koi with ID:", koiPackId); // Log ID để kiểm tra
       const response = await api.delete(`koiPack/delete/${koiPackId}`);
       console.log(response.data);
-      toast.success("Xóa gói sản phẩm thành công!");
-      fetchData();
+      toast.success("Xóa sản phẩm thành công!");
+      fetchKoiPackData(); // Gọi lại hàm fetchData để cập nhật danh sách
     } catch (error) {
-      console.error("Error deleting Koi Pack:", error);
+      console.error("Error deleting Koi:", error); // Log lỗi để kiểm tra
       if (error.response) {
+        console.error("Error response data:", error.response.data);
         toast.error(error.response.data || "An error occurred");
       } else {
         toast.error("An error occurred");
@@ -100,45 +105,62 @@ const Package = () => {
   };
 
   useEffect(() => {
-    fetchData();
+    fetchKoiPackData();
   }, []);
-
-  const columns = [
+  const columnss = [
     {
       title: "ID",
       dataIndex: "id",
     },
     {
-      title: "Tên gói sản phẩm",
+      title: "Tên gói cá Koi",
       dataIndex: "koiPackName",
     },
     {
-      title: "Giới tính",
+      title: "Giới tính gói cá Koi",
       dataIndex: "koiPackGender",
     },
     {
-      title: "Năm sinh",
+      title: "Năm sinh gói cá Koi",
       dataIndex: "koiPackBorn",
     },
     {
-      title: "Size",
+      title: "Size gói cá Koi",
       dataIndex: "koiPackSize",
     },
     {
-      title: "Số lượng",
+      title: "Số lượng gói cá Koi",
       dataIndex: "koiPackQuantity",
+    },
+    {
+      title: "Tình trạng gói cá Koi",
+      dataIndex: "koiPackStatus",
     },
     {
       title: "Giá tiền",
       dataIndex: "price",
     },
     {
-      title: "Mô tả",
+      title: "Mô tả gói cá Koi",
       dataIndex: "koiPackDes",
     },
     {
-      title: "Tình trạng",
-      dataIndex: "koiPackStatus",
+      title: "Tên trang trại",
+      dataIndex: "breederRequestList",
+      render: (breederRequestList) => (
+        <span>
+          {breederRequestList.map((breeder) => breeder.breederName).join(", ")}
+        </span>
+      ),
+    },
+    {
+      title: "Loại cá",
+      dataIndex: "varietyRequestList",
+      render: (varietyRequestList) => (
+        <span>
+          {varietyRequestList.map((variety) => variety.varietyName).join(", ")}
+        </span>
+      ),
     },
     {
       title: "Action",
@@ -149,15 +171,17 @@ const Package = () => {
           <Button
             type="primary"
             onClick={() => {
-              setshowModal(true);
+              setshowModals(true);
               form.setFieldsValue(values);
+              //handleUpdate(values);
             }}
           >
             Sửa
           </Button>
+
           <Popconfirm
             title="Bạn có chắc chắn muốn xóa?"
-            onConfirm={() => handleDelete(id)}
+            onConfirm={() => handleDeletePack(id)}
           >
             <Button type="danger">Xóa</Button>
           </Popconfirm>
@@ -168,8 +192,9 @@ const Package = () => {
 
   return (
     <>
-      <Button className="custom-button green" onClick={() => setshowModal(true)}>
-        <FontAwesomeIcon icon={faPlus} /> Tạo mới gói sản phẩm
+      <Button className="custom-button blue" onClick={() =>  setshowModals(true)}
+      >
+        <FontAwesomeIcon icon={faPlus} /> Thêm mới sản phẩm Koi Pack
       </Button>
       <Button className="custom-button yellow">
         <FontAwesomeIcon icon={faFileDownload} /> Tải từ file
@@ -192,93 +217,93 @@ const Package = () => {
       <Button className="custom-button pink">
         <FontAwesomeIcon icon={faSignature} /> Cá ký gửi
       </Button>
-      <Table dataSource={datas} columns={columns} />
+      <Table dataSource={datas} columnss={columnss} />
 
       <Modal
-        open={showModal}
-        onCancel={() => setshowModal(false)}
-        title="Cập nhật gói sản phẩm"
-        onOk={() => form.submit()}
-        confirmLoading={loading}
-      >
-        <Form form={form} layout="vertical" onFinish={handleSubmit}>
-          <FormItem name="koiPackId" hidden>
+        open={showModals}
+        onCancel={() => setshowModals(false)}
+        title="Cập nhật gói sản phẩm Koi"
+    onOk={() => form.submit()}
+    confirmLoading={loading}
+>
+    <Form form={form} layout="vertical" onFinish={handleSubmitPack}>
+        <FormItem name="koiPackId" hidden>
             <Input />
-          </FormItem>
-          <Form.Item
+        </FormItem>
+        <Form.Item
             name="koiPackName"
-            label="Tên gói sản phẩm"
-            rules={[{ required: true, message: "Không được để trống!" }]}
-          >
+            label="Tên gói cá Koi"
+            rules={[{ required: true, message: 'Không được để trống!' }]}
+        >
             <Input />
-          </Form.Item>
-          <Form.Item
-            name="koiPackGender"
-            label="Giới tính"
-            rules={[{ required: true, message: "Không được để trống!" }]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item
-            name="koiPackBorn"
-            label="Năm sinh"
-            rules={[{ required: true, message: "Không được để trống!" }]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item
+        </Form.Item>
+        <Form.Item
             name="koiPackSize"
             label="Size"
-            rules={[{ required: true, message: "Không được để trống!" }]}
-          >
+            rules={[{ required: true, message: 'Không được để trống!' }]}
+        >
             <Input />
-          </Form.Item>
-          <Form.Item
-            name="koiPackQuantity"
-            label="Số lượng"
-            rules={[{ required: true, message: "Không được để trống!" }]}
-          >
-            <Input type="number" />
-          </Form.Item>
-          <Form.Item
-            name="price"
-            label="Giá tiền"
-            rules={[{ required: true, message: "Không được để trống!" }]}
-          >
-            <Input type="number" />
-          </Form.Item>
-          <Form.Item name="koiPackDes" label="Mô tả">
+        </Form.Item>
+        <Form.Item
+            name="koiPackBorn"
+            label="Năm sinh"
+            rules={[
+                { required: true, message: 'Không được để trống!' },
+            ]}
+        >
+            <Input />
+        </Form.Item>
+        <Form.Item
+            name="koiPackGender"
+            label="Giới tính"
+            rules={[{ required: true, message: 'Không được để trống!' }]}
+        >
+            <Input />
+        </Form.Item>
+        <Form.Item 
+            name="price" 
+            label="Giá tiền" 
+            rules={[
+                { required: true, message: 'Không được để trống!' },
+            ]}
+        >
+            <Input />
+        </Form.Item>
+        <Form.Item
+            name="koiPackDes"
+            label="Mô tả"
+        >
             <Input.TextArea />
-          </Form.Item>
-          <Form.Item
+        </Form.Item>
+        <Form.Item
             name="koiPackStatus"
             label="Tình trạng"
-            rules={[{ required: true, message: "Không được để trống!" }]}
-          >
+            rules={[{ required: true, message: 'Không được để trống!' }]}
+        >
             <Input />
-          </Form.Item>
-          <Form.Item
+        </Form.Item>
+        <Form.Item
             name="breederRequestList"
-            label="Danh sách người nuôi"
-            rules={[{ required: true, message: "Không được để trống!" }]}
-          >
-            <Input.TextArea placeholder='{"breederName": "string", "breederPhone": "08840884070|0|...", "breederAdd": "string"}' />
-          </Form.Item>
-          <Form.Item
+            label="Danh sách trang trại"
+            rules={[{ required: true, message: 'Không được để trống!' }]}
+        >
+            <Input.TextArea placeholder="Nhập tên trang trại| số điện thoại| địa chỉ, cách nhau bằng dấu phẩy." />
+        </Form.Item>
+        <Form.Item
             name="varietyRequestList"
-            label="Danh sách giống"
-            rules={[{ required: true, message: "Không được để trống!" }]}
-          >
-            <Input.TextArea placeholder='{"varietyName": "string", "varietyDes": "string"}' />
-          </Form.Item>
-          <Form.Item
+            label="Danh sách loại cá"
+            rules={[{ required: true, message: 'Không được để trống!' }]}
+        >
+            <Input.TextArea placeholder="Nhập tên  mô tả loại cá, cách nhau bằng dấu phẩy." />
+        </Form.Item>
+        <Form.Item
             name="mediaRequestUrlList"
-            label="Danh sách URL media"
-          >
-            <Input.TextArea />
-          </Form.Item>
-        </Form>
-      </Modal>
+            label="URL hình ảnh"
+        >
+            <Input.TextArea placeholder="Nhập các URL hình ảnh, cách nhau bằng dấu phẩy." />
+        </Form.Item>
+    </Form>
+</Modal>
     </>
   );
 };
