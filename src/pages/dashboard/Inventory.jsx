@@ -74,8 +74,8 @@ const Inventory = () => {
   const handleSubmit = async (values) => {
     if (fileList.length > 0) {
       const file = fileList[0];
-      console.log(file);
       const url = await uploadFile(file.originFileObj);
+    
       values.url = url; //value.(khai báo theo BE/ BE khai báo là url)
     }
 
@@ -83,9 +83,11 @@ const Inventory = () => {
       setLoading(true);
 
       if (values.koiId) {
+       
         const response = await api.put(`koi/update/${values.koiId}`, values);
         console.log(response);
       } else {
+        console.log(values)
         const response = await api.post("koi/createKoi", values);
         console.log(response);
       }
@@ -113,7 +115,6 @@ const Inventory = () => {
     if (!file.url && !file.preview) {
       file.preview = await getBase64(file.originFileObj);
     }
-
     setPreviewImage(file.url || file.preview);
     setPreviewOpen(true);
   };
