@@ -15,6 +15,7 @@ import { LineChart, Line, XAxis, YAxis, Tooltip } from 'recharts'
 import Orders from './Orders';
 import Customers from './Customers';
 import Voucher from './Voucheradmin';
+import Package from './Package';
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -29,17 +30,20 @@ function getItem(label, key, icon, children) {
 
 const items = [
   getItem('Dashboard', '1', <PieChartOutlined />),
-  getItem('Inventory', '2', <DesktopOutlined />),
-  getItem('Orders', 'sub1', <UserOutlined />, [
-    getItem('Manage Orders', '3'),
-    getItem('Completed Orders', '4'),
+  getItem('Inventory', 'sub1', <DesktopOutlined />, [
+    getItem('Koi', '2'),
+    getItem('Koi Package', '3'),
   ]),
-  getItem('Customers', 'sub2', <TeamOutlined />, [
-    getItem('Customer List', '5'),
-    getItem('Customer Feedback', '6'),
+  getItem('Orders', 'sub2', <UserOutlined />, [
+    getItem('Manage Orders', '4'),
+    getItem('Completed Orders', '5'),
   ]),
-  getItem('Reports', '7', <FileOutlined />),
-  getItem('Voucher', '8', <GiftOutlined />), //thêm biểu tượng 
+  getItem('Customers', 'sub3', <TeamOutlined />, [
+    getItem('Customer List', '6'),
+    getItem('Customer Feedback', '7'),
+  ]),
+  getItem('Reports', '8', <FileOutlined />),
+  getItem('Voucher', '9', <GiftOutlined />), //thêm biểu tượng 
 
 ];
 
@@ -55,13 +59,14 @@ const Dashboard = () => {
   };
   const breadcrumbItems = {
     '1': ['Management', 'Dashboard'],
-    '2': ['Management', 'Inventory'],
-    '3': ['Management', 'Manage Orders'],
-    '4': ['Management', 'Completed Orders'],
-    '5': ['Management', 'Customer List'],
-    '6': ['Management', 'Customer Feedback'],
-    '7': ['Management', 'Reports'],
-    '8': ['Management', 'Voucher'], //new
+    '2': ['Management', 'Koi'],
+    '3': ['Management', 'Koi Package'],
+    '4': ['Management', 'Manage Orders'],
+    '5': ['Management', 'Completed Orders'],
+    '6': ['Management', 'Customer List'],
+    '7': ['Management', 'Customer Feedback'],
+    '8': ['Management', 'Reports'],
+    '9': ['Management', 'Voucher'], //new
   };
   const RevenueChart = () => {
     const data = [
@@ -133,14 +138,16 @@ const Dashboard = () => {
       case '2':
         return <Inventory />;
       case '3':
-        return <Orders />;
+        return <Package />;
       case '4':
         return <Orders />;
       case '5':
-        return <Customers />;
+        return <Orders />;
       case '6':
         return <Customers />;
-      case '7': // Thêm case cho trang quản lý doanh thu
+      case '7':
+        return <Customers />;
+      case '8': // Thêm case cho trang quản lý doanh thu
       return (
         <>
           <h2>Quản Lý Doanh Thu</h2>
@@ -159,7 +166,7 @@ const Dashboard = () => {
           />
         </>
       );
-      case '8': // Thêm case cho Voucher
+      case '9': // Thêm case cho Voucher
         return <Voucher />;
       default:
         return <h2>Welcome to the Koi Fish Management Dashboard</h2>;
