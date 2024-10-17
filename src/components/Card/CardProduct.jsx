@@ -44,7 +44,7 @@ const CardProduct = ({product}) => {
         className='img'
         hoverable
         onClick={handleCardClick}
-        cover={<img alt={product.koiName} src={product.image} />}
+        cover={<img alt={product.koiName} src={product.url} />}
         styles={{ body: { backgroundColor: 'white', padding: '16px' } }} // Updated here
       >
         <Card.Meta title={product.koiName} description={product.price} />
@@ -64,7 +64,7 @@ CardProduct.propTypes = {
   product: PropTypes.shape({
     koiId: PropTypes.number,
     koiName: PropTypes.string,
-    image: PropTypes.string,
+    url: PropTypes.string,
     price: PropTypes.string,
     breeder: PropTypes.string,
     koiGender: PropTypes.string,
