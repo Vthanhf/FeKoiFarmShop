@@ -1,4 +1,3 @@
-
 // path/to/Package.jsx
 import { useState, useEffect } from "react";
 import { Table, Button, Modal, Form, Input, Space, Popconfirm } from "antd";
@@ -37,46 +36,49 @@ const Package = () => {
     }
   };
 
-
   //create update Koi pack
   const handleSubmitPack = async (values) => {
     try {
-        setLoading(true);
-  
-        // Tạo danh sách breederRequestList từ trường nhập liệu
-        const breederRequestList = values.breederRequestList.split(',').map(item => {
-            const [name, phone, address] = item.split('|'); // Tách thông tin theo dấu '|'
-            return {
-                breederName: name.trim(),
-                breederPhone: phone.trim(),
-                breederAdd: address.trim(),
-            };
+      setLoading(true);
+
+      // Tạo danh sách breederRequestList từ trường nhập liệu
+      const breederRequestList = values.breederRequestList
+        .split(",")
+        .map((item) => {
+          const [name, phone, address] = item.split("|"); // Tách thông tin theo dấu '|'
+          return {
+            breederName: name.trim(),
+            breederPhone: phone.trim(),
+            breederAdd: address.trim(),
+          };
         });
-  
-        // Tạo danh sách varietyRequestList từ trường nhập liệu
-        const varietyRequestList = values.varietyRequestList.split(',').map(item => {
-            const [name, description] = item.split('|'); // Tách thông tin theo dấu '|'
-            return {
-                varietyName: name.trim(),
-                varietyDescription: description.trim(),
-            };
+
+      // Tạo danh sách varietyRequestList từ trường nhập liệu
+      const varietyRequestList = values.varietyRequestList
+        .split(",")
+        .map((item) => {
+          const [name, description] = item.split("|"); // Tách thông tin theo dấu '|'
+          return {
+            varietyName: name.trim(),
+            varietyDescription: description.trim(),
+          };
         });
-  
-        const response = await api.post("koiPack/create", {
-            ...values,
-            breederRequestList: breederRequestList, // Gửi danh sách breederRequestList
-            varietyRequestList: varietyRequestList, // Gửi danh sách varietyRequestList
-        });
-  
-        console.log(response);
-        toast.success("Thêm sản phẩm thành công!");
-        fetchKoiPackData(); // Cập nhật dữ liệu
-        form.resetFields(); // Reset form
-        setshowModals(false); // Đóng modal
+
+      const response = await api.post("koiPack/create", {
+        ...values,
+        breederRequestList: breederRequestList, // Gửi danh sách breederRequestList
+        varietyRequestList: varietyRequestList, // Gửi danh sách varietyRequestList
+      });
+
+      console.log(response);
+      toast.success("Thêm sản phẩm thành công!");
+      fetchKoiPackData(); // Cập nhật dữ liệu
+      form.resetFields(); // Reset form
+      setshowModals(false); // Đóng modal
     } catch (e) {
-        toast.error(e.response.data || "Có lỗi xảy ra!"); // Hiển thị thông báo lỗi
+      toast.error(e.response.data || "Có lỗi xảy ra!"); // Hiển thị thông báo lỗi
     } finally {
-        setLoading(false);
+      setLoading(false);
     }
   };
 
@@ -107,7 +109,8 @@ const Package = () => {
   useEffect(() => {
     fetchKoiPackData();
   }, []);
-  const columnss = [
+
+  const column = [
     {
       title: "ID",
       dataIndex: "id",
@@ -149,8 +152,10 @@ const Package = () => {
       dataIndex: "breederRequestList",
       render: (breederRequestList) => (
         <span>
-          {breederRequestList.map((breeder) => breeder.breederName).join(", ")}
-        </span>
+        {Array.isArray(breederRequestList) && breederRequestList.length > 0 ? 
+          breederRequestList.map((breeder) => breeder.breederName).join(", ") : 
+          "Không có dữ liệu"}
+      </span>
       ),
     },
     {
@@ -158,8 +163,10 @@ const Package = () => {
       dataIndex: "varietyRequestList",
       render: (varietyRequestList) => (
         <span>
-          {varietyRequestList.map((variety) => variety.varietyName).join(", ")}
-        </span>
+        {Array.isArray(varietyRequestList) && varietyRequestList.length > 0 ? 
+          varietyRequestList.map((variety) => variety.varietyName).join(", ") : 
+          "Không có dữ liệu"}
+      </span>
       ),
     },
     {
@@ -192,7 +199,9 @@ const Package = () => {
 
   return (
     <>
-      <Button className="custom-button blue" onClick={() =>  setshowModals(true)}
+      <Button 
+        className="custom-button blue"
+        onClick={() => setshowModals(true)}
       >
         <FontAwesomeIcon icon={faPlus} /> Thêm mới sản phẩm Koi Pack
       </Button>
@@ -217,93 +226,84 @@ const Package = () => {
       <Button className="custom-button pink">
         <FontAwesomeIcon icon={faSignature} /> Cá ký gửi
       </Button>
-      <Table dataSource={datas} columnss={columnss} />
+
+      <Table dataSource={datas} columns={column}/>
 
       <Modal
         open={showModals}
         onCancel={() => setshowModals(false)}
         title="Cập nhật gói sản phẩm Koi"
-    onOk={() => form.submit()}
-    confirmLoading={loading}
->
-    <Form form={form} layout="vertical" onFinish={handleSubmitPack}>
-        <FormItem name="koiPackId" hidden>
+        onOk={() => form.submit()}
+        confirmLoading={loading}
+      >
+        <Form form={form} layout="vertical" onFinish={handleSubmitPack}>
+          <FormItem name="koiPackId" hidden>
             <Input />
-        </FormItem>
-        <Form.Item
+          </FormItem>
+          <Form.Item
             name="koiPackName"
             label="Tên gói cá Koi"
-            rules={[{ required: true, message: 'Không được để trống!' }]}
-        >
+            rules={[{ required: true, message: "Không được để trống!" }]}
+          >
             <Input />
-        </Form.Item>
-        <Form.Item
+          </Form.Item>
+          <Form.Item
             name="koiPackSize"
             label="Size"
-            rules={[{ required: true, message: 'Không được để trống!' }]}
-        >
+            rules={[{ required: true, message: "Không được để trống!" }]}
+          >
             <Input />
-        </Form.Item>
-        <Form.Item
+          </Form.Item>
+          <Form.Item
             name="koiPackBorn"
             label="Năm sinh"
-            rules={[
-                { required: true, message: 'Không được để trống!' },
-            ]}
-        >
+            rules={[{ required: true, message: "Không được để trống!" }]}
+          >
             <Input />
-        </Form.Item>
-        <Form.Item
+          </Form.Item>
+          <Form.Item
             name="koiPackGender"
             label="Giới tính"
-            rules={[{ required: true, message: 'Không được để trống!' }]}
-        >
+            rules={[{ required: true, message: "Không được để trống!" }]}
+          >
             <Input />
-        </Form.Item>
-        <Form.Item 
-            name="price" 
-            label="Giá tiền" 
-            rules={[
-                { required: true, message: 'Không được để trống!' },
-            ]}
-        >
+          </Form.Item>
+          <Form.Item
+            name="price"
+            label="Giá tiền"
+            rules={[{ required: true, message: "Không được để trống!" }]}
+          >
             <Input />
-        </Form.Item>
-        <Form.Item
-            name="koiPackDes"
-            label="Mô tả"
-        >
+          </Form.Item>
+          <Form.Item name="koiPackDes" label="Mô tả">
             <Input.TextArea />
-        </Form.Item>
-        <Form.Item
+          </Form.Item>
+          <Form.Item
             name="koiPackStatus"
             label="Tình trạng"
-            rules={[{ required: true, message: 'Không được để trống!' }]}
-        >
+            rules={[{ required: true, message: "Không được để trống!" }]}
+          >
             <Input />
-        </Form.Item>
-        <Form.Item
+          </Form.Item>
+          <Form.Item
             name="breederRequestList"
             label="Danh sách trang trại"
-            rules={[{ required: true, message: 'Không được để trống!' }]}
-        >
+            rules={[{ required: true, message: "Không được để trống!" }]}
+          >
             <Input.TextArea placeholder="Nhập tên trang trại| số điện thoại| địa chỉ, cách nhau bằng dấu phẩy." />
-        </Form.Item>
-        <Form.Item
+          </Form.Item>
+          <Form.Item
             name="varietyRequestList"
             label="Danh sách loại cá"
-            rules={[{ required: true, message: 'Không được để trống!' }]}
-        >
+            rules={[{ required: true, message: "Không được để trống!" }]}
+          >
             <Input.TextArea placeholder="Nhập tên  mô tả loại cá, cách nhau bằng dấu phẩy." />
-        </Form.Item>
-        <Form.Item
-            name="mediaRequestUrlList"
-            label="URL hình ảnh"
-        >
+          </Form.Item>
+          <Form.Item name="mediaRequestUrlList" label="URL hình ảnh">
             <Input.TextArea placeholder="Nhập các URL hình ảnh, cách nhau bằng dấu phẩy." />
-        </Form.Item>
-    </Form>
-</Modal>
+          </Form.Item>
+        </Form>
+      </Modal>
     </>
   );
 };
