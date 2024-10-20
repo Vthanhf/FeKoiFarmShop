@@ -12,7 +12,7 @@ import {
   Upload,
   Image,
 } from "antd";
-import uploadFile from "/FE-SWP/FeKoiFarmShop/src/utils/file";
+// import uploadFile from "/FeKoiFarmShop/src/utils/file.js";
 import { PlusOutlined } from "@ant-design/icons";
 import "./Inventory.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -155,6 +155,7 @@ const Inventory = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
   const columns = [
     {
       title: "ID",
@@ -264,6 +265,7 @@ const Inventory = () => {
       <Button className="custom-button pink">
         <FontAwesomeIcon icon={faSignature} /> Cá ký gửi
       </Button>
+      
       <Table dataSource={datas} columns={columns} />
 
       <Modal
