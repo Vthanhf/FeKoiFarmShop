@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from "react";
 import "./packs.css";
-import axios from 'axios';
+import api from "../../config/axios";
 
 const Packs = () => {
   const [products, setProducts] = useState([]); // Dữ liệu sản phẩm
@@ -9,22 +9,23 @@ const Packs = () => {
   const [error, setError] = useState(null); // Trạng thái lỗi
   const [searchTerm, setSearchTerm] = useState(""); // Từ khóa tìm kiếm
 
-  // Hàm lấy dữ liệu sản phẩm
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        setLoading(true);
-        const response = await axios.get('koiPack/getAll'); // Gọi API để lấy tất cả sản phẩm
-        setProducts(Array.isArray(response.data) ? response.data : []);
-      } catch (err) {
-        console.error("Error fetching products:", err); // In ra lỗi
-        setError('Failed to fetch products. Please try again later.');
-      } finally {
-        setLoading(false);
-      }
-    };
+  // Hàm lấy dữ liệu sản phẩm từ API
+  const fetchProducts = async () => {
+    try {
+      setLoading(true);
+      const response = await api.get("/koiPack/getAll"); // Gọi API để lấy tất cả sản phẩm
+      console.log(response.data);
+      setProducts(response.data);
+    } catch (err) {
+      console.error("Error fetching products:", err); // In ra lỗi
+      setError("Failed to fetch products. Please try again later."); // Cập nhật trạng thái lỗi
+    } finally {
+      setLoading(false); // Đặt trạng thái loading về false
+    }
+  };
 
-    fetchProducts();
+  useEffect(() => {
+    fetchProducts(); // Gọi hàm fetchProducts khi component được mount
   }, []);
 
   // Hàm tìm kiếm sản phẩm
@@ -33,13 +34,13 @@ const Packs = () => {
     if (!searchTerm) return; // Nếu không có từ khóa tìm kiếm
     try {
       setLoading(true);
-      const response = await axios.get(`koiPack/search/${searchTerm}`); // Tìm kiếm sản phẩm
-      setProducts(Array.isArray(response.data) ? response.data : []);
+      const response = await api.get(`/koiPack/search/${searchTerm}`); // Tìm kiếm sản phẩm
+      setProducts(Array.isArray(response.data) ? response.data : []); // Cập nhật state với dữ liệu tìm kiếm
     } catch (err) {
       console.error("Error searching products:", err); // In ra lỗi
-      setError('Failed to fetch products. Please try again later.');
+      setError("Failed to fetch products. Please try again later."); // Cập nhật trạng thái lỗi
     } finally {
-      setLoading(false);
+      setLoading(false); // Đặt trạng thái loading về false
     }
   };
 
@@ -104,16 +105,21 @@ const Packs = () => {
           <p>{error}</p>
         ) : products.length > 0 ? (
           products.map((product) => (
-            <div className="product-card" key={product.id}>
-              <div className="packcakoi" style={{ backgroundImage: `url(${product.image})` }}></div>
-              <h3 className="name">{product.name}</h3>
+            <div className="product-card" key={product.koiPackId}>
+              <div
+                className="packcakoi"
+                // style={{
+                //   backgroundImage: `url(${product?.mediaRequestUrlList[0]})`,
+                // }}
+              ></div>
+              <h3 className="name">{product.koiPackName}</h3>
               <p className="price">{product.price}</p>
-              <p className="trangtrai">Trang trại: {product.breeder}</p>
-              <p>Giới tính: {product.sex}</p>
-              <p>Năm sinh: {product.born}</p>
-              <p>Size: {product.size}</p>
+              <p className="trangtrai">Trang trại: {product.breeders.map(breeder => breeder.breederName).join(', ')}</p>
+              <p>Giới tính: {product.koiPackGender}</p>
+              <p>Năm sinh: {product.koiPackBorn}</p>
+              <p>Size: {product.koiPackSize}</p>
               <p>
-                Giống: <span className="red-text">{product.species}</span>
+                Giống: <span className="red-text">{product.varieties.map(variety => variety.varietyName).join(', ')}</span>
               </p>
               <button>Add to cart</button>
             </div>
