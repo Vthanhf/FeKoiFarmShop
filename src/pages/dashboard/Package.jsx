@@ -149,24 +149,26 @@ const Package = () => {
     },
     {
       title: "Tên trang trại",
-      dataIndex: "breederRequestList",
-      render: (breederRequestList) => (
+      dataIndex: "breeders",
+      render: (breeders) => (
         <span>
-        {Array.isArray(breederRequestList) && breederRequestList.length > 0 ? 
-          breederRequestList.map((breeder) => breeder.breederName).join(", ") : 
-          "Không có dữ liệu"}
-      </span>
+          {Array.isArray(breeders) && breeders.length > 0
+            ? breeders.map((breeder) => breeder.breederName).join(", ")
+            : "Không có dữ liệu"}
+        </span>
       ),
     },
     {
       title: "Loại cá",
-      dataIndex: "varietyRequestList",
-      render: (varietyRequestList) => (
+      dataIndex: "varieties",
+      render: (varieties) => (
         <span>
-        {Array.isArray(varietyRequestList) && varietyRequestList.length > 0 ? 
-          varietyRequestList.map((variety) => variety.varietyName).join(", ") : 
-          "Không có dữ liệu"}
-      </span>
+          {Array.isArray(varieties) && varieties.length > 0
+            ? varieties
+                .map((variety) => variety.varietyName)
+                .join(", ")
+            : "Không có dữ liệu"}
+        </span>
       ),
     },
     {
@@ -199,7 +201,7 @@ const Package = () => {
 
   return (
     <>
-      <Button 
+      <Button
         className="custom-button blue"
         onClick={() => setshowModals(true)}
       >
@@ -227,7 +229,7 @@ const Package = () => {
         <FontAwesomeIcon icon={faSignature} /> Cá ký gửi
       </Button>
 
-      <Table dataSource={datas} columns={column}/>
+      <Table dataSource={datas} columns={column} />
 
       <Modal
         open={showModals}
